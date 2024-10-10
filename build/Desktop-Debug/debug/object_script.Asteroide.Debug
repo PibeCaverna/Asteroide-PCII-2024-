@@ -1,0 +1,13 @@
+debug/asteroide.o
+debug/bala.o
+debug/drawable.o
+debug/gamelogic.o
+debug/gamewidget.o
+debug/main.o
+debug/mainwindow.o
+debug/nave.o
+debug/ovni.o
+debug/pj.o
+debug/ui.o
+debug/moc_gamewidget.o
+debug/moc_mainwindow.o

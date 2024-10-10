@@ -1,0 +1,13 @@
+release/asteroide.o
+release/bala.o
+release/drawable.o
+release/gamelogic.o
+release/gamewidget.o
+release/main.o
+release/mainwindow.o
+release/nave.o
+release/ovni.o
+release/pj.o
+release/ui.o
+release/moc_gamewidget.o
+release/moc_mainwindow.o
