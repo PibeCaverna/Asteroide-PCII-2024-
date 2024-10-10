@@ -2,6 +2,8 @@
 #define GAMEWIDGET_H
 
 #include <QWidget>
+#include <QTimer>
+#include "gamelogic.h"
 
 class GameWidget : public QWidget
 {
@@ -9,7 +11,12 @@ class GameWidget : public QWidget
 public:
     explicit GameWidget(QWidget *parent = nullptr);
 
-signals:
+    voide paintEvent(QPaintEvent *evento) override;
+protected:
+    GameLogic * juego;
+    float refresh_period = 20;
+    QTimer timer;
+
 };
 
 #endif // GAMEWIDGET_H
