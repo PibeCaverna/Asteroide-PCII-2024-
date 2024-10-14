@@ -14,9 +14,9 @@ QPointF centroMasa;
 QList<QPointF> P_Abs;
 
 public:
-    Drawable(P_R, c);
-    virtual void Draw();
-    virtual void update_p(P);//p es el nuvo centro
+    Drawable(QList<QPointF>P_R, QPointF c);
+    virtual void Dibujar(QPainter * p) = 0; //copiado del ejemplo de la pelotita, nidea de que significa
+    virtual void update_p(QPointF P);//p es el nuvo centro
 
 
 };
