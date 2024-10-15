@@ -1,16 +1,17 @@
 #ifndef NAVE_H
 #define NAVE_H
 #include "drawable.h"
+#include "gameobject.h"
 //¿Funciona?
 //Funciona!
-class Nave: public Drawable
+class Nave: public GameObject
 {
 public:
     Nave(QList<QPointF> Forma,QPointF centroMasa);
     virtual void CgeSpeed(QPointF Spd);
-    virtual void PegarTiro();
-    void Dibujar(QPainter * p) override;
-    void update_p() override;
+    //virtual void PegarTiro();
+    void Dibujar() override;//QPainter * p) override;
+    //void update_p() override;
 protected:
     QPointF Velocidad;
 };
