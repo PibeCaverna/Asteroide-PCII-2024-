@@ -6,7 +6,7 @@
 class Nave: public Drawable
 {
 public:
-    Nave(QPointF centroMasa);
+    Nave(QList<QPointF> Forma,QPointF centroMasa);
     virtual void CgeSpeed(QPointF Spd);
     virtual void PegarTiro();
     void Dibujar(QPainter * p) override;
