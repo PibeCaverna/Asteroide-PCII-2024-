@@ -17,6 +17,7 @@ public:
     Drawable(QList<QPointF>P_R, QPointF c);
     virtual void Dibujar(QPainter * p) = 0; //copiado del ejemplo de la pelotita, nidea de que significa
     virtual void update_p(QPointF P);//p es el nuvo centro
+    virtual void update_p();
 
 
 };
