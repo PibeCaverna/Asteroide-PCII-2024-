@@ -1,10 +1,15 @@
 #ifndef GAMELOGIC_H
 #define GAMELOGIC_H
-
-class GameLogic
+#include "drawable.h"
+#include "asteroide.h"
+class GameLogic:Drawable
 {
 public:
-    GameLogic();
+    GameLogic(int Ancho, int Alto);
+    void Dibujar(QPainter * p) override;
+private:
+    int _ancho;
+    int _alto;
 };
 
 #endif // GAMELOGIC_H
