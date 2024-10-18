@@ -7,7 +7,6 @@
 class Drawable
 {
 
-
 public:
 
     Drawable();
