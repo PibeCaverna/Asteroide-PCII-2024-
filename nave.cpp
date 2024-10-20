@@ -6,7 +6,7 @@ Nave::Nave(QList<QPointF> Forma, QPointF centroMasa):GameObject(Forma,centroMasa
 }
 
 void Nave::Dibujar(QPainter *p){
-    p->drawPolyline(P_Rel);
+    p->drawPolyline(P_Abs);
 }
 
 void Nave::CgeSpeed(QPointF Spd){

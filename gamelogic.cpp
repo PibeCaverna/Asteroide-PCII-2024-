@@ -7,9 +7,10 @@ GameLogic::GameLogic(int Ancho, int Alto) {
     QList<QPointF> puntos = {
         QPointF(-30, -30),
         QPointF(30, -30),
-        QPointF(0, 50)
+        QPointF(1, 50),
+        QPointF(-30, -30)
     };
-    QPointF pu(0, 5);
+    QPointF pu(100, 100);
     Drawable* nave = new Nave( puntos, pu);
     dibujables.append(nave);
 
