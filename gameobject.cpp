@@ -10,3 +10,14 @@ GameObject::GameObject(QList<QPointF> P_R,QPointF cM) {
     }
 }
 
+void GameObject::Dibujar(QPainter * p){
+    p->drawPolyline(P_Abs);
+}
+
+/*void GameObject::update_p(QPointF P){
+    for(int i = 0; i< P_Rel.size();i++)
+    {
+        P_Abs.append(P_Rel[i] + cM);
+    }
+}*/
+

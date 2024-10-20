@@ -11,12 +11,15 @@ class Nave: public GameObject
 public:
     Nave(QList<QPointF> Forma,QPointF centroMasa);
     virtual void CgeSpeed(QPointF Spd);
-    void Dibujar(QPainter * p);//) override;
+    void handleInput(QKeyEvent *event);
+    void rotar(int C);
+
 
     //virtual void PegarTiro();
     //void update_p() override;
 protected:
     QPointF Velocidad;
+    double angulo;
 
 };
 

@@ -3,6 +3,8 @@
 #include <QPainter>
 #include <QPointF>
 #include <QList>
+#include <QWidget>
+#include <QKeyEvent>
 #include "drawable.h"
 
 
@@ -15,6 +17,9 @@ protected:
 
 public:
     GameObject(QList<QPointF> P_R,QPointF cM);
+    void Dibujar(QPainter * p);
+   // void update_p(QKeyEvent *event);
+
 };
 
 #endif // GAMEOBJECT_H
