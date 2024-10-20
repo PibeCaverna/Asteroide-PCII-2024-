@@ -1,12 +1,15 @@
 #include "asteroide.h"
 
-Asteroide::Asteroide(QList<QPointF>P_R, QPointF c,int punto,int tamanio,QList<QPointF> rel):
-    GameObject(P_R, c)
+Asteroide::Asteroide(QPointF CdMasa, qreal Puntos)
 {
-    this ->P_Rel = rel;
-    this ->_Punto = punto;
-    this ->_Tamanio = tamanio;
+
+    for(int i = 0; i < 10; i++){
+        this->_PoligonoAbsoluto[i]/= Puntos;
+        this->_PoligonoRelativo[i] = _PoligonoAbsoluto[i];
+        this->_PoligonoRelativo[i]+=CdMasa;
+    }
 }
 void Asteroide::Dibujar(QPainter *p){
-
+    p->setPen(Qt::white);
+    p->drawPolygon(_PoligonoRelativo,10);
 }

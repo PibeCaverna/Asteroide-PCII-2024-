@@ -1,18 +1,28 @@
 #ifndef ASTEROIDE_H
 #define ASTEROIDE_H
-//#include <QPainter>
-#include "gameobject.h"
+#include "drawable.h"
 #include <QPointF>
 #include <QList>
 
-class Asteroide: public GameObject
+class Asteroide: public Drawable
 {
 protected:
-    int _Punto;
-    int _Tamanio;
-    QList<QPointF> P_Rel;
+    qreal _Valor;
+    QPointF _PoligonoAbsoluto[10]{
+        QPointF(500,1500),
+        QPointF(500,2500),
+        QPointF(-500,2500),
+        QPointF(-1500,1500),
+        QPointF(-2500,-500),
+        QPointF(-1500,-2500),
+        QPointF(500,-2500),
+        QPointF(2500,-500),
+        QPointF(2500,1500),
+        QPointF(1500,2500),
+    };
+    QPointF _PoligonoRelativo[10];
 public:
-    Asteroide(QList<QPointF>P_R, QPointF c,int punto,int tamanio,QList<QPointF> rel);
+    Asteroide(QPointF CdMasa, qreal Puntos);
     void Dibujar(QPainter * p) override;
 };
 
