@@ -2,12 +2,16 @@
 
 Nave::Nave(QList<QPointF> Forma, QPointF centroMasa):GameObject(Forma,centroMasa){
     this->Velocidad = QPointF(0,0);
+    this->angulo = 90;
     //this->update_p();
 }
 
+<<<<<<< HEAD
 void Nave::Dibujar(QPainter * p){
     //qsy
 }
+=======
+>>>>>>> 007337634b54b799d56c8db442e2f32c7e533441
 
 void Nave::CgeSpeed(QPointF Spd){
     this->Velocidad+= Spd;
@@ -19,3 +23,17 @@ void Nave::CgeSpeed(QPointF Spd){
         this ->P_Abs.replace(i, this ->centroMasa + this ->P_Rel[i]);
     }
 }*/
+
+void Nave::handleInput(QKeyEvent *event){
+    //falta implementar la funcion rotar
+    if (event->key() == Qt::Key_Left)
+    {rotar(1);}
+    else if  (event->key() == Qt::Key_Right)
+    {rotar(-1);}
+    else if  (event->key() == Qt::Key_Up)
+    {centroMasa += QPointF(10,0);}
+}
+
+void Nave::rotar(int C){//si c = -1 rota a la derecha y si c =1 rota a la izquierda
+
+}

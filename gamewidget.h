@@ -12,6 +12,7 @@ public:
     explicit GameWidget(QWidget *parent = nullptr);
 
     void paintEvent(QPaintEvent *evento) override;
+    void keyPressEvent(QKeyEvent *event) override;
 protected:
     GameLogic * juego;
     float refresh_period = 20;
