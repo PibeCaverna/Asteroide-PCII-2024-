@@ -13,7 +13,7 @@ protected:
     QList<QPointF> P_Rel;
 public:
     Asteroide(QList<QPointF>P_R, QPointF c,int punto,int tamanio,QList<QPointF> rel);
-
+    void Dibujar(QPainter * p) override;
 };
 
 #endif // ASTEROIDE_H
