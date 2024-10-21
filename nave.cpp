@@ -6,12 +6,10 @@ Nave::Nave(QList<QPointF> Forma, QPointF centroMasa):GameObject(Forma,centroMasa
     //this->update_p();
 }
 
-<<<<<<< HEAD
 void Nave::Dibujar(QPainter * p){
     //qsy
 }
-=======
->>>>>>> 007337634b54b799d56c8db442e2f32c7e533441
+
 
 void Nave::CgeSpeed(QPointF Spd){
     this->Velocidad+= Spd;

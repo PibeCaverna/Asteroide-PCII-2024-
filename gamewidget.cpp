@@ -5,7 +5,7 @@
 GameWidget::GameWidget(QWidget *parent)
     : QWidget{parent}
 {
-    juego = new GameLogic(800,600);
+    juego = new GameLogic(1600,1200);
 
     timer.setInterval(refresh_period); //setea la tabla de refresco a 20ms
     //connect(&timer,signals(timeout()),this,SLOT(update()));

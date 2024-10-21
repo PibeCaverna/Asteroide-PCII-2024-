@@ -18,11 +18,12 @@ GameLogic::GameLogic(int Ancho, int Alto) {
     //this ->_nave = nave;
     dibujables.append(nave);
 
-    dibujables.append(new Asteroide(QPointF(400,300),20));
+    dibujables.append(new Asteroide(QPointF(100,500),20));
+    dibujables.append(new Asteroide(QPointF(400,200),50));
 }
 
 void GameLogic::Dibujar(QPainter * p){
-    p->setWindow(0,0,_ancho,_alto);
+    p->setWindow(0,0,2*_ancho,2*_alto);
     p->setViewport(0,0,_ancho,_alto);
     p->fillRect(0,0,_ancho,_alto,Qt::black);
     for(Drawable *D : dibujables)
