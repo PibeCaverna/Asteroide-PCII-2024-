@@ -3,21 +3,12 @@
 GameLogic::GameLogic(int Ancho, int Alto) {
     this->_ancho=Ancho;
     this->_alto=Alto;
-    //habria que encontrar una forma mas linda de crear la nave y los asteroides
-    QList<QPointF> puntos = {
-        QPointF(-20, -30),
-        QPointF(1, -70),
-        QPointF(20, -30),
-        QPointF(-20, -30)
-    };
-    QPointF pu(100, 100);
-    this ->_nave = new Nave( puntos, pu);
-    Drawable* nave = _nave;
+
+    this ->_nave = new PJ(QPointF(800,600));
 
     //Drawable* nave = new Nave( puntos, pu);
     //this ->_nave = nave;
-    dibujables.append(nave);
-
+    dibujables.append(_nave);
     dibujables.append(new Asteroide(QPointF(100,500),20));
     dibujables.append(new Asteroide(QPointF(400,200),50));
 }
@@ -35,7 +26,7 @@ void GameLogic::Dibujar(QPainter * p){
 void GameLogic::update(){
 }
 
-void GameLogic::handleInput(QKeyEvent *event){
-    if (event->key() != Qt::Key_Backspace) //las balas no se manejan en nave
-    _nave->handleInput(event);
-}
+//void GameLogic::handleInput(QKeyEvent *event){
+//    if (event->key() != Qt::Key_Backspace) //las balas no se manejan en nave
+//    _nave->handleInput(event);
+//}
