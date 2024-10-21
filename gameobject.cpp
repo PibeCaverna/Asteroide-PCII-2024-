@@ -11,6 +11,7 @@ GameObject::GameObject(QList<QPointF> P_R,QPointF cM) {
 }
 
 void GameObject::Dibujar(QPainter * p){
+    p->setPen(Qt::white);
     p->drawPolyline(P_Abs);
 }
 

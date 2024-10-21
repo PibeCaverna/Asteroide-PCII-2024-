@@ -16,10 +16,9 @@ public:
 
 
     //virtual void PegarTiro();
-<<<<<<< HEAD
-    void Dibujar(QPainter * p) override;//QPainter * p) override;
-=======
->>>>>>> 007337634b54b799d56c8db442e2f32c7e533441
+
+    //void Dibujar(QPainter * p) override;//QPainter * p) override;
+
     //void update_p() override;
 protected:
     QPointF Velocidad;
