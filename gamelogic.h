@@ -10,7 +10,7 @@
 class GameLogic:Drawable
 {
 public:
-    GameLogic(int Ancho, int Alto);
+    GameLogic();
     void Dibujar(QPainter * p) override;
     void update();
 //    void handleInput(QKeyEvent *event);

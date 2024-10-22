@@ -27,7 +27,6 @@ HEADERS += \
     gamelogic.h \
     gamewidget.h \
     mainwindow.h \
-    nave.h \
     ovni.h \
     pj.h \
     ui.h
