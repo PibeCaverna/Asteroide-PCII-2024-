@@ -1,6 +1,7 @@
 #ifndef GAMELOGIC_H
 #define GAMELOGIC_H
 #include "drawable.h"
+#include "ovni.h"
 #include "pj.h"
 #include "bala.h"
 #include "asteroide.h"

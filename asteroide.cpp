@@ -2,7 +2,7 @@
 
 Asteroide::Asteroide(QPointF CdMasa, qreal Puntos)
 {
-
+    this ->_CentroDeMasa = CdMasa;
     for(int i = 0; i < 10; i++){
         this->_PoligonoAbsoluto[i]/= Puntos;
         this->_PoligonoRelativo[i] = _PoligonoAbsoluto[i];
