@@ -17,14 +17,20 @@ GameWidget::GameWidget(QWidget *parent)
 void GameWidget::paintEvent(QPaintEvent *evento)
 {
     QPainter p(this);
-    p.setWindow(0,0,6400,4800);
+    p.setWindow(0,0,3200,2400);
 
-    if (this ->width() < this ->height()){
-        p.setViewport(0,0,this->width(),(float)this->height());
+    if (this ->width() > this ->height()*4/3){//achatado
+
+        double x0 = this->width()/2-this->height()*(4/3.0)/2;
+        p.setViewport(x0,0,this->height()*(4/3.0),this->height());
     }
-    else{
-        p.setViewport(0,0,this->height()*4,this->height());
+    else{//alto
+        double y0 = this->height()/2-(float)this->width()*(3.0/4)/2;
+        p.setViewport(0,y0,this->width(),(float)this->width()*(3.0/4));
     }
+
+
+
 
     juego->update(); //antes de dibujar hay que actualizar el frame
     juego->Dibujar(&p);
