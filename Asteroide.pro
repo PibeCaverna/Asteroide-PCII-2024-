@@ -13,11 +13,9 @@ SOURCES += \
     bala.cpp \
     drawable.cpp \
     gamelogic.cpp \
-    gameobject.cpp \
     gamewidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    nave.cpp \
     ovni.cpp \
     pj.cpp \
     ui.cpp
@@ -27,7 +25,6 @@ HEADERS += \
     bala.h \
     drawable.h \
     gamelogic.h \
-    gameobject.h \
     gamewidget.h \
     mainwindow.h \
     nave.h \
