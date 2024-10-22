@@ -9,17 +9,19 @@ class Asteroide: public Drawable
 protected:
     qreal _Valor;
     QPointF _PoligonoAbsoluto[10]{
-        QPointF(00000,04000),
-        QPointF(-2000,06000),
-        QPointF(-6000,02000),
-        QPointF(-2000,02000),
+        QPointF(00000,-4000),
+        QPointF(-2000,-6000),
+        QPointF(-6000,-2000),
+        QPointF(-2000,-2000),
         QPointF(-6000,00000),
-        QPointF(-4000,-4000),
-        QPointF(04000,-4000),
+        QPointF(-4000,04000),
+        QPointF(04000,04000),
         QPointF(06000,00000),
-        QPointF(02000,06000),
+        QPointF(06000,-4000),
+        QPointF(02000,-6000),
     };
     QPointF _PoligonoRelativo[10];
+    QPointF _CentroDeMasa;
 public:
     Asteroide(QPointF CdMasa, qreal Puntos);
     void Dibujar(QPainter * p) override;

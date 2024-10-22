@@ -1,6 +1,7 @@
 #include "pj.h"
 
 PJ::PJ(QPointF CentroDeMasa) {
+    this ->_CentroDeMasa = CentroDeMasa;
     for(int i = 0; i < 5; i++){
         this->_PoligonoRelativo[i] = _PoligonoAbsoluto[i];
         this->_PoligonoRelativo[i]+=CentroDeMasa;
