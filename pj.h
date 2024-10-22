@@ -1,12 +1,17 @@
 #ifndef PJ_H
 #define PJ_H
 #include "drawable.h"
-#include <QPointF>
+#include <cmath>
 class PJ:public Drawable
 {
 public:
     PJ(QPointF CentroDeMasa);
     void Dibujar(QPainter * p) override;
+    void Rototrasladar();
+    void update_theta(qreal Angulo);
+    void Xlr8(qreal polenta);
+    void UpdateCoM();
+    void Update();
 protected:
     QPointF _PoligonoAbsoluto[5]{
         QPointF( 000, -150),
@@ -17,6 +22,8 @@ protected:
     };
     QPointF _PoligonoRelativo[5];
     QPointF _CentroDeMasa;
+    QPointF _Speed;
+    qreal _theta;
 };
 
 #endif // PJ_H
