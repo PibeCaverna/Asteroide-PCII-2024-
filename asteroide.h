@@ -22,9 +22,13 @@ protected:
     };
     QPointF _PoligonoRelativo[10];
     QPointF _CentroDeMasa;
+    QPointF _velocidad;
 public:
-    Asteroide(QPointF CdMasa, qreal Puntos);
+    Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel=QPointF(0,0));
     void Dibujar(QPainter * p) override;
+    void update();
+
 };
 
 #endif // ASTEROIDE_H
+

@@ -8,7 +8,7 @@ GameLogic::GameLogic() {
     //Drawable* nave = new Nave( puntos, pu);
     //this ->_nave = nave;
     dibujables.append(_nave);
-    dibujables.append(new Asteroide(QPointF(400,800),50));
+    dibujables.append(new Asteroide(QPointF(400,800),50,QPointF(10,10)));
     dibujables.append(new Asteroide(QPointF(400,500),20));
     dibujables.append(new Asteroide(QPointF(400,1000),100));
     dibujables.append(new Ovni(QPointF(1200,400),200));
