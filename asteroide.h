@@ -26,7 +26,7 @@ protected:
 public:
     Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel=QPointF(0,0));
     void Dibujar(QPainter * p) override;
-    void update();
+    void Update();
 
 };
 

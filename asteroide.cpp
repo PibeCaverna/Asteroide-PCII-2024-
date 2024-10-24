@@ -2,6 +2,7 @@
 
 Asteroide::Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel)
 {
+
     this ->_velocidad = vel;
     this ->_CentroDeMasa = CdMasa;
     for(int i = 0; i < 10; i++){
@@ -15,6 +16,11 @@ void Asteroide::Dibujar(QPainter *p){
     p->drawPolygon(_PoligonoRelativo,10);
 }
 
-void Asteroide::update(){
+void Asteroide::Update(){//tengo que hacer que se muevan todos los puntos del array
+    qreal mod = sqrt(pow(_velocidad.x(),2)+pow(_velocidad.y(),2));
+    if (mod > 20){
+        this -> _velocidad /= mod;
+        this -> _velocidad *= 20;
+    }
     _CentroDeMasa += _velocidad;
 }

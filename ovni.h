@@ -7,6 +7,7 @@ class Ovni: public Drawable
 public:
     Ovni(QPointF CdMasa, qreal Puntos);
     void Dibujar(QPainter * p) override;
+    void Update() override;
 protected :
     QPointF _PoligonoAbsoluto[8]{
         QPointF(-10000,-20000),

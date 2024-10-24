@@ -15,3 +15,7 @@ void Ovni::Dibujar(QPainter * p){
     p->drawLine(QLineF(_PoligonoRelativo[1],_PoligonoRelativo[6]));
     p->drawLine(QLineF(_PoligonoRelativo[2],_PoligonoRelativo[5]));
 }
+
+void Ovni::Update(){
+
+}

@@ -14,13 +14,14 @@ class GameLogic:Drawable
 public:
     GameLogic();
     void Dibujar(QPainter * p) override;
-    void update();
+    void Update() override;
     void handleInput(QKeyEvent *event);
 private:
     int _ancho;
     int _alto;
     QList<Drawable*> dibujables;
     PJ *_nave;
+
 
 };
 

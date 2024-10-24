@@ -23,8 +23,12 @@ void GameLogic::Dibujar(QPainter * p){
     }
 }
 
-void GameLogic::update(){
-    _nave->Update();
+void GameLogic::Update(){
+    //_nave->Update();
+    for(Drawable *D : dibujables)
+    {
+        D->Update();
+    }
 }
 
 

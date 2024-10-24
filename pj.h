@@ -12,7 +12,7 @@ public:
     void update_theta(qreal Angulo);
     void Xlr8(qreal polenta);
     void UpdateCoM();
-    void Update();
+    void Update() override;
 protected:
     QPointF _PoligonoAbsoluto[5]{
         QPointF( 000, -150),
