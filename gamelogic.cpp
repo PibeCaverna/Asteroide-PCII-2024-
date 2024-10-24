@@ -31,12 +31,15 @@ void GameLogic::update(){
 void  GameLogic::handleInput(QKeyEvent *event){
 
     if (event->key() == Qt::Key_Right){
-        _nave->update_theta(3);
+        _nave->update_theta(10);
     }
     else if (event->key() == Qt::Key_Left){
-        _nave->update_theta(-3);
+        _nave->update_theta(-10);
     }
     else if (event->key() == Qt::Key_Up){
-        _nave->Xlr8(3);
+        _nave->Xlr8(4);
+    }
+    else if (event->key() == Qt::Key_Space){
+
     }
 }
