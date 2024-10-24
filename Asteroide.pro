@@ -18,6 +18,8 @@ SOURCES += \
     mainwindow.cpp \
     ovni.cpp \
     pj.cpp \
+    polycolider.cpp \
+    ptcolider.cpp \
     ui.cpp
 
 HEADERS += \
@@ -29,6 +31,8 @@ HEADERS += \
     mainwindow.h \
     ovni.h \
     pj.h \
+    polycolider.h \
+    ptcolider.h \
     ui.h
 
 FORMS += \
