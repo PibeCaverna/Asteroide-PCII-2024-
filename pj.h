@@ -2,6 +2,7 @@
 #define PJ_H
 #include "drawable.h"
 #include <cmath>
+#include <QDebug>
 class PJ:public Drawable
 {
 public:

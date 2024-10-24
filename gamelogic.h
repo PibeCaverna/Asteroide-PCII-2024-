@@ -7,13 +7,15 @@
 #include "asteroide.h"
 #include <QList>
 #include <QPointF>
+#include <QWidget> //para usar QKeyEvents
+#include <QKeyEvent>
 class GameLogic:Drawable
 {
 public:
     GameLogic();
     void Dibujar(QPainter * p) override;
     void update();
-//    void handleInput(QKeyEvent *event);
+    void handleInput(QKeyEvent *event);
 private:
     int _ancho;
     int _alto;

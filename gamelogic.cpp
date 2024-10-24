@@ -24,6 +24,19 @@ void GameLogic::Dibujar(QPainter * p){
 }
 
 void GameLogic::update(){
+    _nave->Update();
 }
 
 
+void  GameLogic::handleInput(QKeyEvent *event){
+
+    if (event->key() == Qt::Key_Right){
+        _nave->update_theta(3);
+    }
+    else if (event->key() == Qt::Key_Left){
+        _nave->update_theta(-3);
+    }
+    else if (event->key() == Qt::Key_Up){
+        _nave->Xlr8(3);
+    }
+}

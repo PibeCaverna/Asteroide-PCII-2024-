@@ -34,11 +34,11 @@ void GameWidget::paintEvent(QPaintEvent *evento)
 
     juego->update(); //antes de dibujar hay que actualizar el frame
     juego->Dibujar(&p);
-    qDebug() << "dibuja";
+    //qDebug() << "dibuja";
 }
 
 void GameWidget::keyPressEvent(QKeyEvent *event){
-    //juego->handleInput(event);
-    //qDebug() << "press";
+    juego->handleInput(event);
+   // qDebug() << "press";
 
 }
