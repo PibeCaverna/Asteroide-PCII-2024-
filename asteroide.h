@@ -3,6 +3,7 @@
 #include "drawable.h"
 #include <QPointF>
 #include <QList>
+#include <QDebug>
 
 class Asteroide: public Drawable
 {
