@@ -1,12 +1,13 @@
 #include "polycolider.h"
+#include "ptcolider.h"
 
-PolyColider::PolyColider() {}
-bool PolyColider::Golpe_Punto(PtColider Punto){
+//PolyColider::PolyColider() {}
+bool PolyColider::Golpe_Punto(PtColider *Punto){
     //Algoritmo robado de https://www.jeffreythompson.org/collision-detection/poly-point.php
     bool Pepazo = false;
     QPointF este = QPointF(0,0);
     QPointF otro = QPointF(0,0);
-    QPointF pepa = Punto.get_pt();
+    QPointF pepa = Punto -> get_pt();
     //Comparamos cada par de vertices adyacentes con el punto
     for (int i = 0; i < this->get_tope(); i++){
         este = this->get_vertex(i);
