@@ -12,11 +12,14 @@ Asteroide::Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel)
     }
 }
 void Asteroide::Dibujar(QPainter *p){
-    p->setPen(Qt::white);
+    QPen Pen{Qt::white};
+    Pen.setWidth(2);
+    p->setPen(Pen);
+
     p->drawPolygon(_PoligonoRelativo,10);
 }
 
-void Asteroide::Update(){//tengo que hacer que se muevan todos los puntos del array
+void Asteroide::Update(){
     qreal mod = sqrt(pow(_velocidad.x(),2)+pow(_velocidad.y(),2));
     if (mod > 1){
         this -> _velocidad /= mod;

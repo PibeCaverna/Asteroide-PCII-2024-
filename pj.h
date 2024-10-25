@@ -3,6 +3,7 @@
 #include "drawable.h"
 #include <cmath>
 #include <QDebug>
+#include <QPen>
 class PJ:public Drawable
 {
 public:

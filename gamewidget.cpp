@@ -20,7 +20,6 @@ void GameWidget::paintEvent(QPaintEvent *evento)
     p.setWindow(0,0,3200,2400);
 
     if (this ->width() > this ->height()*4/3){//achatado
-
         double x0 = this->width()/2-this->height()*(4/3.0)/2;
         p.setViewport(x0,0,this->height()*(4/3.0),this->height());
     }
@@ -28,8 +27,6 @@ void GameWidget::paintEvent(QPaintEvent *evento)
         double y0 = this->height()/2-(float)this->width()*(3.0/4)/2;
         p.setViewport(0,y0,this->width(),(float)this->width()*(3.0/4));
     }
-
-
 
 
     juego->Update(); //antes de dibujar hay que actualizar el frame

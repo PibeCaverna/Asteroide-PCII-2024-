@@ -20,8 +20,10 @@ private:
     int _ancho;
     int _alto;
     QList<Drawable*> dibujables;
+    QList<Asteroide*> Asteroides;
+    QList<Bala*> Balas;
+    QList<Ovni*> Ovnis;
     PJ *_nave;
-
 
 };
 

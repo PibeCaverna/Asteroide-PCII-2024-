@@ -10,7 +10,10 @@ Ovni::Ovni(QPointF CdMasa, qreal Puntos) {
 }
 
 void Ovni::Dibujar(QPainter * p){
-    p->setPen(Qt::white);
+    QPen Pen{Qt::white};
+    Pen.setWidth(2);
+    p->setPen(Pen);
+
     p->drawPolygon(_PoligonoRelativo,8);
     p->drawLine(QLineF(_PoligonoRelativo[1],_PoligonoRelativo[6]));
     p->drawLine(QLineF(_PoligonoRelativo[2],_PoligonoRelativo[5]));

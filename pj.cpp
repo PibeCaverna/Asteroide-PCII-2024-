@@ -10,7 +10,10 @@ PJ::PJ(QPointF CentroDeMasa) {
     }
 }
 void PJ::Dibujar(QPainter *p){
-    p->setPen(Qt::white);
+    QPen Pen{Qt::white};
+    Pen.setWidth(2);
+    p->setPen(Pen);
+
     p->drawPolygon(_PoligonoRelativo,5);
 }
 void PJ::Rototrasladar(){

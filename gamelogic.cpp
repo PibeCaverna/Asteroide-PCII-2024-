@@ -31,7 +31,6 @@ void GameLogic::Update(){
     }
 }
 
-
 void  GameLogic::handleInput(QKeyEvent *event){
 
     if (event->key() == Qt::Key_Right){
