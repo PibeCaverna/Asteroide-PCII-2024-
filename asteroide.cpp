@@ -23,10 +23,16 @@ void Asteroide::Update(){//tengo que hacer que se muevan todos los puntos del ar
         this -> _velocidad *= 5;
     }
     this->_CentroDeMasa += _velocidad;
+    if (_CentroDeMasa.x() > 3200 + _PoligonoAbsoluto[7].x())
+        {_CentroDeMasa.rx() -= 3200 + _PoligonoAbsoluto[7].x();}
+    if (_CentroDeMasa.x() < _PoligonoAbsoluto[3].x())
+        {_CentroDeMasa.rx() += 3200 + _PoligonoAbsoluto[7].x();}
+    if (_CentroDeMasa.y() > 2400 - _PoligonoAbsoluto[1].y())
+        {_CentroDeMasa.ry() -= 2400 - _PoligonoAbsoluto[1].y();}
+    if (_CentroDeMasa.y() < _PoligonoAbsoluto[1].y())
+        {_CentroDeMasa.ry() += 2400 - _PoligonoAbsoluto[1].y();}
 
     for (int i =0; i<10;i++){
         this ->_PoligonoRelativo[i]=_PoligonoAbsoluto[i] +_CentroDeMasa;
     }
-
-    qDebug() << _CentroDeMasa;
 }

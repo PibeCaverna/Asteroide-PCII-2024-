@@ -45,5 +45,14 @@ void PJ::UpdateCoM(){
 }
 void PJ::Update(){
     this -> UpdateCoM();
+    if (_CentroDeMasa.x() > 3200 + 150)
+    {_CentroDeMasa.rx() -= 3200 + 150;}
+    if (_CentroDeMasa.x() < -150)
+    {_CentroDeMasa.rx() += 3200 + 150;}
+    if (_CentroDeMasa.y() > 2400 + 150)
+    {_CentroDeMasa.ry() -= 2400 + 150;}
+    if (_CentroDeMasa.y() < -150)
+    {_CentroDeMasa.ry() += 2400 + 150;}
+
     this ->Rototrasladar();
 }
