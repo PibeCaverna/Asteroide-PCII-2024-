@@ -19,7 +19,7 @@ protected:
         QPointF( 100,  100),
         QPointF( 040,  060),
         QPointF(-040,  060),
-        QPointF(-100,  100), //se va al cuerno, no se por qué
+        QPointF(-100,  100),
     };
     QPointF _PoligonoRelativo[5];
     QPointF _CentroDeMasa;
