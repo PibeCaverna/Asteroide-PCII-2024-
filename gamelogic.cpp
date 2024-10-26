@@ -13,7 +13,9 @@ GameLogic::GameLogic() {
     dibujables.append(new Asteroide(QPointF(400,1000),100));
     dibujables.append(new Ovni(QPointF(1200,400),200));
     dibujables.append(new Ovni(QPointF(1200,600),1000));
+    dibujables.append(new Bala(QPointF(1300,700),QPointF(1,1)));
 }
+
 
 void GameLogic::Dibujar(QPainter * p){
     p->fillRect(0,0,3200,2400,Qt::black);

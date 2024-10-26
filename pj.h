@@ -25,7 +25,7 @@ protected:
     QPointF _PoligonoRelativo[5];
     QPointF _CentroDeMasa;
     QPointF _Speed;
-    qreal _theta;
+    qreal   _theta;
 };
 
 #endif // PJ_H
