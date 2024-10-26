@@ -1,8 +1,9 @@
 #include "bala.h"
 
-Bala::Bala(QPointF pos, QPointF speed) {
+Bala::Bala(QPointF pos, qreal angulo) {
+
     this->_pos = pos;
-    this->_speed = speed;
+    this->_speed = QPointF(cos(angulo-M_PI/2),sin(angulo-M_PI/2));
 }
 
 void Bala::Dibujar(QPainter *p){
@@ -16,5 +17,5 @@ void Bala::Dibujar(QPainter *p){
 }
 
 void Bala::Update(){
-    _pos += _speed;
+    _pos += _speed*22;
 }

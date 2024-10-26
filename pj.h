@@ -14,6 +14,8 @@ public:
     void Xlr8(qreal polenta);
     void UpdateCoM();
     void Update() override;
+    QPointF get_punta(){return _PoligonoRelativo[0];};
+    qreal get_angulo(){return _theta;};
 protected:
     QPointF _PoligonoAbsoluto[5]{
         QPointF( 000, -150),

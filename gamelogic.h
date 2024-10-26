@@ -16,6 +16,7 @@ public:
     void Dibujar(QPainter * p) override;
     void Update() override;
     void handleInput(QKeyEvent *event);
+    void Disparar();
 private:
     int _ancho;
     int _alto;

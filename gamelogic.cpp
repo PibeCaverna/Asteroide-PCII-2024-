@@ -13,7 +13,7 @@ GameLogic::GameLogic() {
     dibujables.append(new Asteroide(QPointF(400,1000),100));
     dibujables.append(new Ovni(QPointF(1200,400),200));
     dibujables.append(new Ovni(QPointF(1200,600),1000));
-    dibujables.append(new Bala(QPointF(1300,700),QPointF(1,1)));
+    //dibujables.append(new Bala(QPointF(1300,700),QPointF(1,1)));
 }
 
 
@@ -45,6 +45,13 @@ void  GameLogic::handleInput(QKeyEvent *event){
         _nave->Xlr8(4);
     }
     else if (event->key() == Qt::Key_Space){
-
+        Disparar();
     }
+}
+
+void GameLogic::Disparar(){
+
+    Bala* b = new Bala(_nave->get_punta(), _nave->get_angulo());
+    Balas.append(b);
+    dibujables.append(b);
 }
