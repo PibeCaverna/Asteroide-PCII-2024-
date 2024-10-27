@@ -34,8 +34,9 @@ void GameWidget::paintEvent(QPaintEvent *evento)
     //qDebug() << "dibuja";
 }
 
-void GameWidget::keyPressEvent(QKeyEvent *event){
-    juego->handleInput(event);
-   // qDebug() << "press";
 
+void GameWidget::handleEvent(QKeyEvent *event){
+    juego->handleInput(event);
 }
+
+

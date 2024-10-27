@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <QKeySequence>
+#include <QKeyCombination>
 
 #include "gamelogic.h"
 
@@ -13,7 +15,8 @@ public:
     explicit GameWidget(QWidget *parent = nullptr);
 
     void paintEvent(QPaintEvent *evento) override;
-    void keyPressEvent(QKeyEvent *event) override;
+    void handleEvent(QKeyEvent *event);
+
 protected:
     GameLogic * juego;
     float refresh_period = 20;

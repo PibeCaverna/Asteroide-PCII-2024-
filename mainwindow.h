@@ -14,8 +14,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void keyPressEvent(QKeyEvent *ev) override;
 
 private:
     Ui::MainWindow *ui;
+
 };
 #endif // MAINWINDOW_H

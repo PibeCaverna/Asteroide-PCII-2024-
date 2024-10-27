@@ -9,6 +9,7 @@
 #include <QPointF>
 #include <QWidget> //para usar QKeyEvents
 #include <QKeyEvent>
+#include <QDebug>
 class GameLogic:Drawable
 {
 public:

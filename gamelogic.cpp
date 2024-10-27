@@ -31,6 +31,20 @@ void GameLogic::Update(){
     {
         D->Update();
     }
+
+    if (!Balas.empty()){
+        for(int i=0; i < Balas.length();i++)
+        {
+            qDebug() << Balas[i]->expiro();
+            if( Balas[i]->expiro() ){
+                dibujables.removeOne(Balas[i]);
+                delete Balas[i];
+                Balas[i] = nullptr;
+                Balas.removeAt(i);
+
+            }
+        }
+    }
 }
 
 void  GameLogic::handleInput(QKeyEvent *event){
