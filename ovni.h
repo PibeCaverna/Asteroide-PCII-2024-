@@ -1,13 +1,22 @@
 #ifndef OVNI_H
 #define OVNI_H
 #include "drawable.h"
+#include "polycolider.h"
 
-class Ovni: public Drawable
+class Ovni: public Drawable, public PolyColider
 {
 public:
     Ovni(QPointF CdMasa, qreal Puntos);
     void Dibujar(QPainter * p) override;
     void Update() override;
+    //Clavo los returns acá xq son una boludez
+    int get_tope() override{
+        return 8;
+    }
+    QPointF get_vertex(int index) override{
+        return _PoligonoRelativo[index];
+    }
+
 protected :
     QPointF _PoligonoAbsoluto[8]{
         QPointF(-10000,-20000),

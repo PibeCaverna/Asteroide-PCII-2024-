@@ -1,11 +1,11 @@
 #ifndef ASTEROIDE_H
 #define ASTEROIDE_H
 #include "drawable.h"
-#include <QPointF>
+#include "polycolider.h"
 #include <QList>
 #include <QDebug>
 
-class Asteroide: public Drawable
+class Asteroide: public Drawable, public PolyColider
 {
 protected:
     qreal _Valor;
@@ -28,6 +28,13 @@ public:
     Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel=QPointF(0,0));
     void Dibujar(QPainter * p) override;
     void Update();
+    //Clavo los returns acá xq son una boludez
+    int get_tope() override{
+        return 10;
+    }
+    QPointF get_vertex(int index) override{
+        return _PoligonoRelativo[index];
+    }
 
 };
 

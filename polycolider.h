@@ -11,6 +11,7 @@ public:
     virtual int get_tope() = 0;
     virtual QPointF get_vertex(int index) = 0;
     bool Golpe_Punto(PtColider *Punto);
+    bool Golpe_Poly(PolyColider *Otro);
 };
 
 #endif // POLYCOLIDER_H

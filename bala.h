@@ -1,6 +1,6 @@
 #ifndef BALA_H
 #define BALA_H
-#include <QPointF>
+#include "ptcolider.h"
 #include <QList>
 #include <QDebug>
 #include <cmath>
@@ -9,7 +9,7 @@
 #include "drawable.h"
 
 
-class Bala: public Drawable
+class Bala: public Drawable, public PtColider
 {
     QElapsedTimer _dt;
     QPointF _pos;
@@ -20,6 +20,9 @@ public:
     void Update() override;
     void Dibujar(QPainter *p) override;
     bool expiro();
+    QPointF get_pt() override{
+        return _pos;
+    }
 };
 
 #endif // BALA_H
