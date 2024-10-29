@@ -2,6 +2,9 @@
 #define OVNI_H
 #include "drawable.h"
 #include "polycolider.h"
+#include <QList>
+#include <QPointF>
+#include <QPolygonF>
 
 class Ovni: public Drawable, public PolyColider
 {
@@ -9,16 +12,12 @@ public:
     Ovni(QPointF CdMasa, qreal Puntos);
     void Dibujar(QPainter * p) override;
     void Update() override;
-    //Clavo los returns acá xq son una boludez
-    int get_tope() override{
-        return 8;
-    }
-    QPointF get_vertex(int index) override{
-        return _PoligonoRelativo[index];
+    QPolygonF get_poly(){
+        return QPolygonF(_PoligonoRelativo);
     }
 
 protected :
-    QPointF _PoligonoAbsoluto[8]{
+    QList<QPointF> _PoligonoAbsoluto = {
         QPointF(-10000,-20000),
         QPointF(-16000, -8000),
         QPointF(-30000,  0000),
@@ -29,7 +28,7 @@ protected :
         QPointF( 10000,-20000),
 
     };
-    QPointF _PoligonoRelativo[8];
+    QList <QPointF> _PoligonoRelativo;
     QPointF _CentroDeMasa;
 };
 

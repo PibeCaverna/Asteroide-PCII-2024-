@@ -5,7 +5,7 @@ PJ::PJ(QPointF CentroDeMasa) {
     this ->_Speed = QPointF(0,0);
     this ->_theta = 0; // me parece que el angulo deveria empezar en 90
     for(int i = 0; i < 5; i++){
-        this->_PoligonoRelativo[i] = _PoligonoAbsoluto[i];
+        this->_PoligonoRelativo.append(_PoligonoAbsoluto[i]);
         this->_PoligonoRelativo[i]+=CentroDeMasa;
     }
 }
@@ -14,7 +14,7 @@ void PJ::Dibujar(QPainter *p){
     Pen.setWidth(2);
     p->setPen(Pen);
 
-    p->drawPolygon(_PoligonoRelativo,5);
+    p->drawPolygon(QPolygonF(_PoligonoRelativo));
 }
 void PJ::Rototrasladar(){
     for (int i =0; i<5;i++){

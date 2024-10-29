@@ -3,8 +3,10 @@
 #include "drawable.h"
 #include "polycolider.h"
 #include <cmath>
+#include <QList>
 #include <QDebug>
 #include <QPen>
+#include <QPolygonF>
 class PJ:public Drawable, public PolyColider
 {
 public:
@@ -17,23 +19,19 @@ public:
     void Update() override;
     QPointF get_punta(){return _PoligonoRelativo[0];}
     qreal get_angulo(){return _theta;}
-    //Clavo los returns acá xq son una boludez
-    int get_tope() override{
-        return 5;
-    }
-    QPointF get_vertex(int index) override{
-        return _PoligonoRelativo[index];
+    QPolygonF get_poly(){
+        return QPolygonF(_PoligonoRelativo);
     }
 
 protected:
-    QPointF _PoligonoAbsoluto[5]{
+    QList<QPointF> _PoligonoAbsoluto = {
         QPointF( 000, -150),
         QPointF( 100,  100),
         QPointF( 040,  060),
         QPointF(-040,  060),
         QPointF(-100,  100),
     };
-    QPointF _PoligonoRelativo[5];
+    QList<QPointF> _PoligonoRelativo;
     QPointF _CentroDeMasa;
     QPointF _Speed;
     qreal   _theta;
