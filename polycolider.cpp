@@ -29,7 +29,7 @@ bool PolyColider::Golpe_Punto(PtColider *Punto){
 bool PolyColider::Golpe_Poly(PolyColider *Poligono){
     //Chequeamos cada punto del poligono que llama respecto del otro poligono,
     //puede funcionar porque solo corre 2 o 3 veces por update
-    bool Pepazo = false;
+    /*bool Pepazo = false;
     for (int j = 0; j < this -> get_tope();j++){
         Pepazo = false;
         QPointF este = QPointF(0,0);
@@ -53,5 +53,16 @@ bool PolyColider::Golpe_Poly(PolyColider *Poligono){
         pepa.~QPointF();
         if(Pepazo){return Pepazo;}
     }
-        return false;
+        return false;*/
+    QList<QPointF> Este, Otro;
+    for (int i = 0; i < this ->get_tope(); i++){
+        Este.append(this->get_vertex(i));
+    }
+    for (int i = 0; i < Poligono->get_tope(); i++){
+        Otro.append(Poligono->get_vertex(i));
+    }
+    bool seladio = QPolygonF(Este).intersects(QPolygonF(Otro));
+    Este.clear();
+    Otro.clear();
+    return seladio;
 }

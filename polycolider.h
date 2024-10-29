@@ -2,6 +2,7 @@
 #define POLYCOLIDER_H
 #include "ptcolider.h"
 #include <QPointF>
+#include <QPolygonF>
 class PtColider;//forward declaration, salió de chatgpt, no se si hay forma más elegante
 
 class PolyColider
