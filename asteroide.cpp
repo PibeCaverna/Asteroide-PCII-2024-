@@ -2,7 +2,7 @@
 
 Asteroide::Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel)
 {
-
+    this ->_Valor = Puntos;
     this ->_velocidad = vel;
     this ->_CentroDeMasa = CdMasa;
     for(int i = 0; i < 10; i++){

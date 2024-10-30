@@ -32,6 +32,9 @@ public:
     QPolygonF get_poly(){
         return QPolygonF(_PoligonoRelativo);
     }
+    int get_value(){return int (_Valor);}
+    QPointF get_speed(){return _velocidad;}
+    QPointF get_COM(){return _CentroDeMasa;}
 
 };
 

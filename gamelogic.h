@@ -18,6 +18,7 @@ public:
     void Update() override;
     void handleInput(QKeyEvent *event);
     void Disparar();
+    void Collision_Handler();
 private:
     int _ancho;
     int _alto;
@@ -26,6 +27,7 @@ private:
     QList<Bala*> Balas;
     QList<Ovni*> Ovnis;
     PJ *_nave;
+    qreal _Puntos;
 
 };
 

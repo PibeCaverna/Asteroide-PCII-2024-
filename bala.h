@@ -23,6 +23,7 @@ public:
     QPointF get_pt() override{
         return _pos;
     }
+    QPointF get_Speed(){return _speed;}
 };
 
 #endif // BALA_H
