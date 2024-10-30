@@ -10,6 +10,7 @@
 #include <QWidget> //para usar QKeyEvents
 #include <QKeyEvent>
 #include <QDebug>
+#include <QRandomGenerator>
 class GameLogic:Drawable
 {
 public:
@@ -19,6 +20,7 @@ public:
     void handleInput(QKeyEvent *event);
     void Disparar();
     void Collision_Handler();
+    void Spawn_Roid(qreal Q);
 private:
     int _ancho;
     int _alto;
@@ -28,6 +30,7 @@ private:
     QList<Ovni*> Ovnis;
     PJ *_nave;
     qreal _Puntos;
+    qreal _Roidmount;
 
 };
 

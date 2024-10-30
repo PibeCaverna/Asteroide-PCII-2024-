@@ -4,13 +4,14 @@ GameLogic::GameLogic() {
 
     this ->_Puntos = 0;
     this ->_nave = new PJ(QPointF(800,600));
-
+    this ->_Roidmount = 4;
+    this ->Spawn_Roid(_Roidmount);
     //Drawable* nave = new Nave( puntos, pu);
     //this ->_nave = nave;
     //dibujables.append(_nave);
-    Asteroides.append(new Asteroide(QPointF(400,800),50,QPointF(10,10)));
-    Asteroides.append(new Asteroide(QPointF(400,500),20));
-    Asteroides.append(new Asteroide(QPointF(400,1000),100));
+    //Asteroides.append(new Asteroide(QPointF(400,800),50,QPointF(10,10)));
+    //Asteroides.append(new Asteroide(QPointF(400,500),20));
+    //Asteroides.append(new Asteroide(QPointF(400,1000),100));
     //dibujables.append(new Ovni(QPointF(1200,400),200));
     //dibujables.append(new Ovni(QPointF(1200,600),1000));
     //dibujables.append(new Bala(QPointF(1300,700),QPointF(1,1)));
@@ -36,12 +37,14 @@ void GameLogic::Collision_Handler(){
                         }
                         if (Asteroides[j]->Golpe_Punto(Balas[i])){
                             switch (Asteroides[j]->get_value()){
-                            case int(20):
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),50,Balas[i]->get_Speed()-2*Asteroides[j]->get_speed()));
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),50,Balas[i]->get_Speed()+2*Asteroides[j]->get_speed()));
-                            case int(50):
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),100,Balas[i]->get_Speed()-2*Asteroides[j]->get_speed()));
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),100,Balas[i]->get_Speed()+2*Asteroides[j]->get_speed()));
+                            case 20:
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),50,Balas[i]->get_Speed()-Asteroides[j]->get_speed()));
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),50,Balas[i]->get_Speed()+Asteroides[j]->get_speed()));
+                                break; //ta bien?
+                            case 50:
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),100,Balas[i]->get_Speed()-Asteroides[j]->get_speed()));
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),100,Balas[i]->get_Speed()+Asteroides[j]->get_speed()));
+                                break; //ta bien?
                             }
                             Deadstones.prepend(j);
                             if (!DeadBullets.contains(i)){DeadBullets.prepend(i);}
@@ -71,8 +74,22 @@ void GameLogic::Collision_Handler(){
 
 }
 
+void GameLogic::Spawn_Roid(qreal Q){
+    QPointF r, v;
+    QRandomGenerator X,Y,V;
+    for (int i = 0; i < Q; i++){
+        r = QPointF(X.bounded(3200),Y.bounded(2400));
+        v = QPointF(V.generateDouble()*10,V.generateDouble()*10);
+        this -> Asteroides.append(new Asteroide(r,20,v));
+    }
+    qDebug() << Asteroides;
+
+}
 
 void GameLogic::Update(){
+    if (Asteroides.isEmpty()){
+        this -> _Roidmount += 1;
+        this -> Spawn_Roid(_Roidmount);}
     this ->Collision_Handler();
     //_nave->Update();
     dibujables.clear();
