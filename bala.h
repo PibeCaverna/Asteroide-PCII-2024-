@@ -20,10 +20,10 @@ public:
     void Update() override;
     void Dibujar(QPainter *p) override;
     bool expiro();
-    QPointF get_pt() override{
-        return _pos;
-    }
+    int get_dt(){return _dt.elapsed();}
+    QPointF get_pt() override{return _pos;}
     QPointF get_Speed(){return _speed;}
+
 };
 
 #endif // BALA_H

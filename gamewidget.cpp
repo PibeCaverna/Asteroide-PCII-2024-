@@ -28,14 +28,56 @@ void GameWidget::paintEvent(QPaintEvent *evento)
         p.setViewport(0,y0,this->width(),(float)this->width()*(3.0/4));
     }
 
-
+    handleEvent();
     juego->Update(); //antes de dibujar hay que actualizar el frame
     juego->Dibujar(&p);
 }
 
 
-void GameWidget::handleEvent(QKeyEvent *event){
-    juego->handleInput(event);
+void GameWidget::handleEvent(){
+    if (!eventos.empty()){
+
+        for(int i=0;i<eventos.size();i++){
+            juego->handleInput(eventos[i]);
+        }
+    }
 }
 
+void GameWidget::addEvent(QKeyEvent *event){
+    //es la unica forma en la que funciona
+    QKeyEvent *ev = new QKeyEvent(event->type(), event->key(),
+                                  event->modifiers(), event->text(),
+                                  event->isAutoRepeat(), event->count());
 
+
+if (!eventos.empty()){
+        bool yaEsta = false;
+        for(int i=0; i<eventos.size() ;i++){
+            if(ev->key() == eventos[i]->key()){
+                yaEsta = true;
+            }
+        }
+        if(!yaEsta)
+            eventos.append(ev);
+    }
+    else{
+        eventos.append(ev);
+
+        }
+
+
+
+}
+
+void GameWidget::removeEvent(QKeyEvent *event){
+//puede tener leak de memoria
+//se podria romper ya que elimino un objeto de la
+//lista mientras la enstoy recorriendo
+    if(!event->isAutoRepeat()) {
+        for(int i=0;i<eventos.size();i++){
+            if(event->key() == eventos[i]->key()){
+                eventos.removeAt(i);
+            }
+        }
+    }
+}

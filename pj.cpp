@@ -40,7 +40,7 @@ void PJ::Xlr8(qreal polenta){
         this -> _Speed /= mod;
         this -> _Speed *= 20;
     }
-    qDebug() << _Speed;
+    //qDebug() << _Speed;
 }
 void PJ::UpdateCoM(){
     this -> _CentroDeMasa += _Speed;
