@@ -31,7 +31,6 @@ void GameWidget::paintEvent(QPaintEvent *evento)
 
     juego->Update(); //antes de dibujar hay que actualizar el frame
     juego->Dibujar(&p);
-    //qDebug() << "dibuja";
 }
 
 
