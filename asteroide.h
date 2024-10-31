@@ -4,12 +4,13 @@
 #include "polycolider.h"
 #include <QList>
 #include <QDebug>
+#include <QPolygon>
 
 class Asteroide: public Drawable, public PolyColider
 {
 protected:
     qreal _Valor;
-    QPointF _PoligonoAbsoluto[10]{
+    QList<QPointF> _PoligonoAbsoluto = {
         QPointF(00000,-4000),
         QPointF(-2000,-6000),
         QPointF(-6000,-2000),
@@ -21,20 +22,19 @@ protected:
         QPointF(06000,-4000),
         QPointF(02000,-6000),
     };
-    QPointF _PoligonoRelativo[10];
+    QList<QPointF> _PoligonoRelativo;
     QPointF _CentroDeMasa;
     QPointF _velocidad;
 public:
     Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel=QPointF(0,0));
     void Dibujar(QPainter * p) override;
     void Update();
-    //Clavo los returns acá xq son una boludez
-    int get_tope() override{
-        return 10;
+    QPolygonF get_poly(){
+        return QPolygonF(_PoligonoRelativo);
     }
-    QPointF get_vertex(int index) override{
-        return _PoligonoRelativo[index];
-    }
+    int get_value(){return int (_Valor);}
+    QPointF get_speed(){return _velocidad;}
+    QPointF get_COM(){return _CentroDeMasa;}
 
 };
 

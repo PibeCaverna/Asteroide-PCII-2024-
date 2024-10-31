@@ -22,6 +22,8 @@ public:
     bool expiro();
     int get_dt(){return _dt.elapsed();}
     QPointF get_pt() override{return _pos;}
+    QPointF get_Speed(){return _speed;}
+
 };
 
 #endif // BALA_H

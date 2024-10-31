@@ -2,12 +2,12 @@
 
 Asteroide::Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel)
 {
-
+    this ->_Valor = Puntos;
     this ->_velocidad = vel;
     this ->_CentroDeMasa = CdMasa;
     for(int i = 0; i < 10; i++){
         this->_PoligonoAbsoluto[i]/= Puntos;
-        this->_PoligonoRelativo[i] = _PoligonoAbsoluto[i];
+        this->_PoligonoRelativo.append(_PoligonoAbsoluto[i]);
         this->_PoligonoRelativo[i]+=CdMasa;
     }
 }
@@ -16,7 +16,7 @@ void Asteroide::Dibujar(QPainter *p){
     Pen.setWidth(2);
     p->setPen(Pen);
 
-    p->drawPolygon(_PoligonoRelativo,10);
+    p->drawPolygon(QPolygonF(_PoligonoRelativo));
 }
 
 void Asteroide::Update(){
