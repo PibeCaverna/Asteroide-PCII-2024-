@@ -20,6 +20,7 @@ public:
     void Update() override;
     void Dibujar(QPainter *p) override;
     bool expiro();
+    int get_dt(){return _dt.elapsed();}
     QPointF get_pt() override{
         return _pos;
     }

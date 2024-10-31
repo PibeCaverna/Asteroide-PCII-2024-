@@ -49,7 +49,7 @@ void GameLogic::Update(){
 }
 
 void  GameLogic::handleInput(QKeyEvent *event){
-
+    //se puede hacer con un switch
     if (event->key() == Qt::Key_Right){
         _nave->update_theta(5);
     }
@@ -60,7 +60,12 @@ void  GameLogic::handleInput(QKeyEvent *event){
         _nave->Xlr8(4);
     }
     else if (event->key() == Qt::Key_Space){
-        Disparar();
+        if(!Balas.empty()){
+            if(Balas.last()->get_dt() >500)
+                Disparar();
+        }
+        else
+            Disparar();
     }
 }
 
