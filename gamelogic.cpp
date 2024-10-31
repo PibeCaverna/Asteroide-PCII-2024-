@@ -27,6 +27,7 @@ void GameLogic::Dibujar(QPainter * p){
 
 void GameLogic::Update(){
     //_nave->Update();
+
     for(Drawable *D : dibujables)
     {
         D->Update();
@@ -35,7 +36,7 @@ void GameLogic::Update(){
     if (!Balas.empty()){
         for(int i=0; i < Balas.length();i++)
         {
-            qDebug() << Balas[i]->expiro();
+
             if( Balas[i]->expiro() ){
                 dibujables.removeOne(Balas[i]);
                 delete Balas[i];
@@ -50,10 +51,10 @@ void GameLogic::Update(){
 void  GameLogic::handleInput(QKeyEvent *event){
 
     if (event->key() == Qt::Key_Right){
-        _nave->update_theta(10);
+        _nave->update_theta(5);
     }
-    else if (event->key() == Qt::Key_Left){
-        _nave->update_theta(-10);
+    if (event->key() == Qt::Key_Left){
+        _nave->update_theta(-5);
     }
     else if (event->key() == Qt::Key_Up){
         _nave->Xlr8(4);

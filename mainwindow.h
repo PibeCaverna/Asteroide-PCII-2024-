@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
@@ -15,6 +16,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void keyPressEvent(QKeyEvent *ev) override;
+    void keyReleaseEvent(QKeyEvent *ev) override;
 
 private:
     Ui::MainWindow *ui;
