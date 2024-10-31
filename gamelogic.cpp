@@ -16,8 +16,6 @@ GameLogic::GameLogic() {
     //dibujables.append(new Ovni(QPointF(1200,600),1000));
     //dibujables.append(new Bala(QPointF(1300,700),QPointF(1,1)));
 }
-
-
 void GameLogic::Dibujar(QPainter * p){
     p->fillRect(0,0,3200,2400,Qt::black);
     for(Drawable *D : dibujables)
@@ -25,7 +23,6 @@ void GameLogic::Dibujar(QPainter * p){
         D->Dibujar(p);
     }
 }
-
 void GameLogic::Collision_Handler(){
     QList<qreal> Deadstones, DeadBullets/*, DeadUFOS*/;
     if (!Balas.empty()){
@@ -33,7 +30,7 @@ void GameLogic::Collision_Handler(){
             if (!Asteroides.empty()){
                     for (int j = 0; j < Asteroides.length(); j++){
                         if (Asteroides[j]->Golpe_Poly(this->_nave)){
-                            qDebug() << "Auch";
+                           // qDebug() << "Auch";
                         }
                         if (Asteroides[j]->Golpe_Punto(Balas[i])){
                             switch (Asteroides[j]->get_value()){
@@ -56,7 +53,7 @@ void GameLogic::Collision_Handler(){
     else if(!Asteroides.isEmpty()){
                 for (Asteroide *A : Asteroides){
                     if (this ->_nave->Golpe_Poly(A)){
-                        qDebug() << "Auch";
+                        //qDebug() << "Auch";
                     }
                 }
     }
@@ -82,7 +79,7 @@ void GameLogic::Spawn_Roid(qreal Q){
         v = QPointF(V.generateDouble()*10,V.generateDouble()*10);
         this -> Asteroides.append(new Asteroide(r,20,v));
     }
-    qDebug() << Asteroides;
+    //qDebug() << Asteroides;
 
 }
 
@@ -124,23 +121,26 @@ void GameLogic::Update(){
 
 void  GameLogic::handleInput(QKeyEvent *event){
     //se puede hacer con un switch
-    if (event->key() == Qt::Key_Right){
-        _nave->update_theta(5);
-    }
-    else if (event->key() == Qt::Key_Up){
-        _nave->Xlr8(4);
-    }
-    else if (event->key() == Qt::Key_Left){
-        _nave->update_theta(-5);
-    }
 
-    else if (event->key() == Qt::Key_Space){
+    switch (event->key())  {
+    case Qt::Key_Right:
+        _nave->update_theta(5);
+        break;
+    case Qt::Key_Left:
+        _nave->update_theta(-5);
+        break;
+    case Qt::Key_Up:
+        _nave->Xlr8(4);
+        break;
+    case Qt::Key_Space:
         if(!Balas.empty()){
-            if(Balas.last()->get_dt() >500)
+            if(Balas.last()->get_dt() >300)
                 Disparar();
         }
         else
             Disparar();
+        //qDebug() << "asi que di dispara";
+        break;
     }
 }
 
