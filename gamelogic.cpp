@@ -53,12 +53,13 @@ void  GameLogic::handleInput(QKeyEvent *event){
     if (event->key() == Qt::Key_Right){
         _nave->update_theta(5);
     }
-    if (event->key() == Qt::Key_Left){
-        _nave->update_theta(-5);
-    }
     else if (event->key() == Qt::Key_Up){
         _nave->Xlr8(4);
     }
+    else if (event->key() == Qt::Key_Left){
+        _nave->update_theta(-5);
+    }
+
     else if (event->key() == Qt::Key_Space){
         if(!Balas.empty()){
             if(Balas.last()->get_dt() >500)
