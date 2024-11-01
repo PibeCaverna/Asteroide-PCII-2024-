@@ -1,8 +1,6 @@
 #ifndef BALA_H
 #define BALA_H
 #include "ptcolider.h"
-#include <QList>
-#include <QDebug>
 #include <cmath>
 #include <QTimer>
 #include <QElapsedTimer>

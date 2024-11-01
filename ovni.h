@@ -2,9 +2,6 @@
 #define OVNI_H
 #include "drawable.h"
 #include "polycolider.h"
-#include <QList>
-#include <QPointF>
-#include <QPolygonF>
 
 class Ovni: public Drawable, public PolyColider
 {

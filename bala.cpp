@@ -18,7 +18,7 @@ void Bala::Dibujar(QPainter *p){
 }
 
 void Bala::Update(){
-    _pos += _speed*40;
+    _pos += _speed*50;
 
     if (_pos.x() > 3200)
         _pos.rx() = 0;
@@ -28,12 +28,10 @@ void Bala::Update(){
         _pos.ry() = 2400;
     else if (_pos.y() > 2400)
         _pos.ry() = 0;
-
-    //qDebug() << _dt.elapsed();
 }
 
 bool Bala::expiro(){
-    if (_dt.elapsed() >= 1200)
+    if (_dt.elapsed() >= 700)
         return true;
     return false;
 }

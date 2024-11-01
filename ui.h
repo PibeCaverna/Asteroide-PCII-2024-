@@ -1,7 +1,6 @@
 #ifndef UI_H
 #define UI_H
 #include "drawable.h"
-#include <QDebug>
 
 class UI: public Drawable
 {

@@ -38,7 +38,25 @@ void GameWidget::handleEvent(){
     if (!eventos.empty()){
 
         for(int i=0;i<eventos.size();i++){
-            juego->handleInput(eventos[i]);
+            //juego->handleInput(eventos[i]);
+            if (juego->get_nave() -> lives()){
+                switch (eventos[i]->key())  {
+                case Qt::Key_Right:
+                    juego->get_nave()->update_theta(5);
+                    break;
+                case Qt::Key_Left:
+                    juego->get_nave()->update_theta(-5);
+                    break;
+                case Qt::Key_Up:
+                    juego->get_nave()->Xlr8(4);
+                    break;
+                case Qt::Key_Space:
+                    juego -> Disparar();
+                    break;
+                }
+            }
+
+
         }
     }
 }

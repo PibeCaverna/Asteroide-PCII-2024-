@@ -8,10 +8,11 @@
 #include "ui.h"
 #include <QList>
 #include <QPointF>
-#include <QWidget> //para usar QKeyEvents
+#include <QWidget>
 #include <QKeyEvent>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QDateTime>
 class GameLogic:Drawable
 {
 public:
@@ -22,6 +23,7 @@ public:
     void Disparar();
     void Collision_Handler();
     void Spawn_Roid(qreal Q);
+    PJ * get_nave(){return this -> _nave;}
 private:
     int _ancho;
     int _alto;

@@ -34,7 +34,6 @@ void UI::Dibujar(QPainter *p){
 void UI::auch(){
     if (_vidas > 0){this -> _vidas -= 1;}
     else{this -> _vidas = 0;}
-    qDebug() << "Auch";
 }
 
 void UI::Update(){

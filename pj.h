@@ -3,10 +3,6 @@
 #include "drawable.h"
 #include "polycolider.h"
 #include <cmath>
-#include <QList>
-#include <QDebug>
-#include <QPen>
-#include <QPolygonF>
 class PJ:public Drawable, public PolyColider
 {
 public:

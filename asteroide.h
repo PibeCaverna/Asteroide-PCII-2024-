@@ -2,9 +2,6 @@
 #define ASTEROIDE_H
 #include "drawable.h"
 #include "polycolider.h"
-#include <QList>
-#include <QDebug>
-#include <QPolygon>
 
 class Asteroide: public Drawable, public PolyColider
 {

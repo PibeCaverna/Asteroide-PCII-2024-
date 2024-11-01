@@ -1,20 +1,10 @@
 #include "gamelogic.h"
 
 GameLogic::GameLogic() {
-
     this ->_Puntos = 0;
-    this ->_Roidmount = 1;
-    this ->Spawn_Roid(_Roidmount);
+    this ->_Roidmount = 3;
+    this ->RoundTimeout = 100;
     this -> _nave = new PJ(QPointF(1600,1200));
-    //Drawable* nave = new Nave( puntos, pu);
-    //this ->_nave = nave;
-    //dibujables.append(_nave);
-    //Asteroides.append(new Asteroide(QPointF(400,800),50,QPointF(10,10)));
-    //Asteroides.append(new Asteroide(QPointF(400,500),20));
-    //Asteroides.append(new Asteroide(QPointF(400,1000),100));
-    //dibujables.append(new Ovni(QPointF(1200,400),200));
-    //dibujables.append(new Ovni(QPointF(1200,600),1000));
-    //dibujables.append(new Bala(QPointF(1300,700),QPointF(1,1)));
 }
 void GameLogic::Dibujar(QPainter * p){
     p->fillRect(0,0,3200,2400,Qt::black);
@@ -53,12 +43,12 @@ void GameLogic::Collision_Handler(){
         }
     }
     else if(!Asteroides.isEmpty()){
-                for (Asteroide *A : Asteroides){
+        for (Asteroide *A : Asteroides){
             if ((this ->_nave->Golpe_Poly(A)) && (this -> _nave -> lives())){
-                        this -> _Interfaz->auch();
-                        this -> _nave -> kill();
-                    }
-                }
+                this -> _Interfaz->auch();
+                this -> _nave -> kill();
+            }
+        }
     }
     for (qreal i: DeadBullets){
         delete Balas[i];
@@ -77,12 +67,15 @@ void GameLogic::Collision_Handler(){
 void GameLogic::Spawn_Roid(qreal Q){
     QPointF r, v;
     QRandomGenerator X,Y,V;
+    X.seed(QDateTime::currentMSecsSinceEpoch()%100);
+    Y.seed(QDateTime::currentMSecsSinceEpoch()%100+1);
+    V.seed(QDateTime::currentMSecsSinceEpoch()%100+2);
     for (int i = 0; i < Q; i++){
         r = QPointF(X.bounded(3200),Y.bounded(2400));
         v = QPointF(V.generateDouble()*5*((r.x()-1600)/abs(r.x()-1600)),V.generateDouble()*5*((r.y()-1600)/abs(r.y()-1600)));
         this -> Asteroides.append(new Asteroide(r,20,v));
     }
-    //qDebug() << Asteroides;
+    //qDebug() << Asteroides
 
 }
 
@@ -98,24 +91,20 @@ void GameLogic::Update(){
     }
     this ->Collision_Handler();
     dibujables.clear();
-    if ((!_nave->lives())&&(_Interfaz->Health() > 0)){
+    if ((!_nave->lives())){
         if (PlayerTimeout < 100){
             PlayerTimeout +=1;
         }
-        else{
+        else if (this ->_Interfaz -> Health()>0){
             this -> PlayerTimeout = 0;
             this ->_nave->ressurect();}
     }
     else{dibujables.append(_nave);}
 
-    dibujables.append(_Interfaz);
     for (Asteroide *A :Asteroides){dibujables.append(A);}
     for (Bala *B :Balas){dibujables.append(B);}
     for (Ovni *O :Ovnis){dibujables.append(O);}
-
-    //dibujables += QList<Drawable*>(Asteroides);
-    //dibujables += QList<Drawable*>(Balas);
-    //dibujables += QList<Drawable*>(Ovnis);
+    dibujables.append(_Interfaz);
 
     for(Drawable *D : dibujables)
     {
@@ -130,7 +119,6 @@ void GameLogic::Update(){
                 delete Balas[i];
                 Balas[i] = nullptr;
                 Balas.removeAt(i);
-
             }
         }
     }
@@ -138,32 +126,32 @@ void GameLogic::Update(){
 
 void  GameLogic::handleInput(QKeyEvent *event){
     //se puede hacer con un switch
-
-    switch (event->key())  {
-    case Qt::Key_Right:
-        _nave->update_theta(5);
-        break;
-    case Qt::Key_Left:
-        _nave->update_theta(-5);
-        break;
-    case Qt::Key_Up:
-        _nave->Xlr8(4);
-        break;
-    case Qt::Key_Space:
-        if(!Balas.empty()){
-            if(Balas.last()->get_dt() >300)
+    if (this -> _nave ->lives()){
+        switch (event->key())  {
+        case Qt::Key_Right:
+            _nave->update_theta(5);
+            break;
+        case Qt::Key_Left:
+            _nave->update_theta(-5);
+            break;
+        case Qt::Key_Up:
+            _nave->Xlr8(4);
+            break;
+        case Qt::Key_Space:
+            if(!Balas.empty()){
+                if(Balas.last()->get_dt() >150)
+                    Disparar();
+            }
+            else
                 Disparar();
+            break;
         }
-        else
-            Disparar();
-        //qDebug() << "asi que di dispara";
-        break;
     }
 }
 
 void GameLogic::Disparar(){
-
-    Bala* b = new Bala(_nave->get_punta(), _nave->get_angulo());
-    Balas.append(b);
-    //dibujables.append(b);
+    if (Balas.empty() || (Balas.last()->get_dt() >150)){
+        Bala* b = new Bala(_nave->get_punta(), _nave->get_angulo());
+        Balas.append(b);
+    }
 }
