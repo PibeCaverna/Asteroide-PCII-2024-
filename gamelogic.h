@@ -5,6 +5,7 @@
 #include "pj.h"
 #include "bala.h"
 #include "asteroide.h"
+#include "ui.h"
 #include <QList>
 #include <QPointF>
 #include <QWidget> //para usar QKeyEvents
@@ -28,10 +29,12 @@ private:
     QList<Asteroide*> Asteroides;
     QList<Bala*> Balas;
     QList<Ovni*> Ovnis;
-    PJ *_nave;
+    PJ *_nave = nullptr;
     qreal _Puntos;
     qreal _Roidmount;
-
+    UI *_Interfaz = new UI();
+    int PlayerTimeout = 0;
+    int RoundTimeout = 0;
 };
 
 #endif // GAMELOGIC_H

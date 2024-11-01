@@ -22,6 +22,9 @@ public:
     QPolygonF get_poly(){
         return QPolygonF(_PoligonoRelativo);
     }
+    void kill(){this -> _isalive = false;}
+    bool lives(){return _isalive;}
+    void ressurect();
 
 protected:
     QList<QPointF> _PoligonoAbsoluto = {
@@ -35,6 +38,7 @@ protected:
     QPointF _CentroDeMasa;
     QPointF _Speed;
     qreal   _theta;
+    bool _isalive = true;
 };
 
 #endif // PJ_H

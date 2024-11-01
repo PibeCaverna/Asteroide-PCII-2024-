@@ -3,9 +3,9 @@
 GameLogic::GameLogic() {
 
     this ->_Puntos = 0;
-    this ->_nave = new PJ(QPointF(800,600));
-    this ->_Roidmount = 4;
+    this ->_Roidmount = 1;
     this ->Spawn_Roid(_Roidmount);
+    this -> _nave = new PJ(QPointF(1600,1200));
     //Drawable* nave = new Nave( puntos, pu);
     //this ->_nave = nave;
     //dibujables.append(_nave);
@@ -29,20 +29,22 @@ void GameLogic::Collision_Handler(){
         for (int i = 0; i < Balas.length(); i++){
             if (!Asteroides.empty()){
                     for (int j = 0; j < Asteroides.length(); j++){
-                        if (Asteroides[j]->Golpe_Poly(this->_nave)){
-                           // qDebug() << "Auch";
+                        if ((Asteroides[j]->Golpe_Poly(this->_nave)) && (this -> _nave -> lives()) ){
+                            this -> _Interfaz->auch();
+                            this -> _nave -> kill();
                         }
                         if (Asteroides[j]->Golpe_Punto(Balas[i])){
                             switch (Asteroides[j]->get_value()){
                             case 20:
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),50,Balas[i]->get_Speed()-Asteroides[j]->get_speed()));
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),50,Balas[i]->get_Speed()+Asteroides[j]->get_speed()));
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM(),50,(Balas[i]->get_Speed()-Asteroides[j]->get_speed())/4));
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM(),50,(Balas[i]->get_Speed()+Asteroides[j]->get_speed())/4));
                                 break; //ta bien?
                             case 50:
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),100,Balas[i]->get_Speed()-Asteroides[j]->get_speed()));
-                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM()+Balas[i]->get_Speed(),100,Balas[i]->get_Speed()+Asteroides[j]->get_speed()));
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM(),100,(Balas[i]->get_Speed()-Asteroides[j]->get_speed())/3));
+                                Asteroides.append(new Asteroide(Asteroides[j]->get_COM(),100,(Balas[i]->get_Speed()+Asteroides[j]->get_speed())/3));
                                 break; //ta bien?
                             }
+                            this -> _Interfaz->MasPuntos(Asteroides[j]->get_value());
                             Deadstones.prepend(j);
                             if (!DeadBullets.contains(i)){DeadBullets.prepend(i);}
                         }
@@ -52,8 +54,9 @@ void GameLogic::Collision_Handler(){
     }
     else if(!Asteroides.isEmpty()){
                 for (Asteroide *A : Asteroides){
-                    if (this ->_nave->Golpe_Poly(A)){
-                        //qDebug() << "Auch";
+            if ((this ->_nave->Golpe_Poly(A)) && (this -> _nave -> lives())){
+                        this -> _Interfaz->auch();
+                        this -> _nave -> kill();
                     }
                 }
     }
@@ -76,7 +79,7 @@ void GameLogic::Spawn_Roid(qreal Q){
     QRandomGenerator X,Y,V;
     for (int i = 0; i < Q; i++){
         r = QPointF(X.bounded(3200),Y.bounded(2400));
-        v = QPointF(V.generateDouble()*10,V.generateDouble()*10);
+        v = QPointF(V.generateDouble()*5*((r.x()-1600)/abs(r.x()-1600)),V.generateDouble()*5*((r.y()-1600)/abs(r.y()-1600)));
         this -> Asteroides.append(new Asteroide(r,20,v));
     }
     //qDebug() << Asteroides;
@@ -84,14 +87,28 @@ void GameLogic::Spawn_Roid(qreal Q){
 }
 
 void GameLogic::Update(){
-    if (Asteroides.isEmpty()){
-        this -> _Roidmount += 1;
-        this -> Spawn_Roid(_Roidmount);}
-    this ->Collision_Handler();
-    //_nave->Update();
 
+    if (Asteroides.isEmpty()){
+        if (RoundTimeout < 200){
+            RoundTimeout += 1;
+        }
+        else{
+            this -> _Roidmount += 1;
+            this -> Spawn_Roid(_Roidmount);}
+    }
+    this ->Collision_Handler();
     dibujables.clear();
-    dibujables.append(_nave);
+    if ((!_nave->lives())&&(_Interfaz->Health() > 0)){
+        if (PlayerTimeout < 100){
+            PlayerTimeout +=1;
+        }
+        else{
+            this -> PlayerTimeout = 0;
+            this ->_nave->ressurect();}
+    }
+    else{dibujables.append(_nave);}
+
+    dibujables.append(_Interfaz);
     for (Asteroide *A :Asteroides){dibujables.append(A);}
     for (Bala *B :Balas){dibujables.append(B);}
     for (Ovni *O :Ovnis){dibujables.append(O);}

@@ -1,26 +1,29 @@
 #ifndef UI_H
 #define UI_H
 #include "drawable.h"
+#include <QDebug>
 
-class UI
+class UI: public Drawable
 {
 public:
     UI();
-    UI operator+=(int);
+    void MasPuntos(int Puntos){this -> _Puntos += Puntos;}
     void Dibujar(QPainter *p) override;
     void Update() override;
-    int auch();
-    int oneup();
+    void auch();
+    void oneup(){this -> _vidas += 1;}
+    int Health(){return _vidas;}
 protected:
     int _Puntos;
     int _vidas;
-    QPointF _txtanchor = QPointF(3200,200);
-    QPointF _Formavida[5] = (
-        QPointF( 25, 10),
-        QPointF( 35, 35),
-        QPointF( 29, 31),
-        QPointF( 21, 31),
-        QPointF( 11, 35),);
+    int _n = 1;
+    QPointF _txtanchor = QPointF(120,130);
+    QPointF _Formavida[5] = {
+        QPointF( 20,175),
+        QPointF(-30,300),
+        QPointF(  0,280),
+        QPointF( 40,280),
+        QPointF( 70,300)};
 
 };
 

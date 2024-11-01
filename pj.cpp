@@ -59,3 +59,9 @@ void PJ::Update(){
 
     this ->Rototrasladar();
 }
+void PJ::ressurect(){
+    this ->_isalive = true;
+    this ->_CentroDeMasa = QPointF(1600,1200);
+    this ->_Speed = QPointF(0,0);
+    this ->_theta = 0;
+}
