@@ -19,7 +19,6 @@ public:
     GameLogic();
     void Dibujar(QPainter * p) override;
     void Update() override;
-    void handleInput(QKeyEvent *event);
     void Disparar();
     void Collision_Handler();
     void Spawn_Roid(qreal Q);

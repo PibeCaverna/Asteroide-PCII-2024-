@@ -75,7 +75,6 @@ void GameLogic::Spawn_Roid(qreal Q){
         v = QPointF(V.generateDouble()*5*((r.x()-1600)/abs(r.x()-1600)),V.generateDouble()*5*((r.y()-1600)/abs(r.y()-1600)));
         this -> Asteroides.append(new Asteroide(r,20,v));
     }
-    //qDebug() << Asteroides
 
 }
 
@@ -120,31 +119,6 @@ void GameLogic::Update(){
                 Balas[i] = nullptr;
                 Balas.removeAt(i);
             }
-        }
-    }
-}
-
-void  GameLogic::handleInput(QKeyEvent *event){
-    //se puede hacer con un switch
-    if (this -> _nave ->lives()){
-        switch (event->key())  {
-        case Qt::Key_Right:
-            _nave->update_theta(5);
-            break;
-        case Qt::Key_Left:
-            _nave->update_theta(-5);
-            break;
-        case Qt::Key_Up:
-            _nave->Xlr8(4);
-            break;
-        case Qt::Key_Space:
-            if(!Balas.empty()){
-                if(Balas.last()->get_dt() >150)
-                    Disparar();
-            }
-            else
-                Disparar();
-            break;
         }
     }
 }

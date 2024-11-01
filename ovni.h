@@ -2,7 +2,8 @@
 #define OVNI_H
 #include "drawable.h"
 #include "polycolider.h"
-
+#include <QRandomGenerator>
+#include <QDateTime>
 class Ovni: public Drawable, public PolyColider
 {
 public:
@@ -11,6 +12,10 @@ public:
     void Update() override;
     QPolygonF get_poly(){
         return QPolygonF(_PoligonoRelativo);
+    }
+    void setspeed();
+    bool shooting(){
+        return this -> _isshooting;
     }
 
 protected :
@@ -27,6 +32,11 @@ protected :
     };
     QList <QPointF> _PoligonoRelativo;
     QPointF _CentroDeMasa;
+    QPointF _Speed;
+    bool _isshooting = false;
+    int _tsinceshot = 0;
+    int _tsincemove = 0;
+    int _Puntos;
 };
 
 #endif // OVNI_H
