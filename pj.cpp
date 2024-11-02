@@ -28,8 +28,8 @@ void PJ::Rototrasladar(){
     }
 
 }
-void PJ::update_theta(qreal Angulo){
-    qreal newdeg = (_theta*180/M_PI) + Angulo;
+void PJ::update_theta(qreal Angulo, double dt){
+    qreal newdeg = (_theta*180/M_PI) + Angulo*dt;
     if (newdeg > 360){newdeg -= 360 * (int)newdeg % 360;}
     this ->_theta = newdeg*M_PI/180;
 }
@@ -42,12 +42,12 @@ void PJ::Xlr8(qreal polenta){
     }
     //qDebug() << _Speed;
 }
-void PJ::UpdateCoM(){
-    this -> _CentroDeMasa += _Speed;
-    this -> _Speed -= _Speed/50;
+void PJ::UpdateCoM(double dt){
+    this -> _CentroDeMasa += _Speed*dt;
+    this -> _Speed -= (_Speed/50)*dt;
 }
-void PJ::Update(){
-    this -> UpdateCoM();
+void PJ::Update(double dt){
+    this -> UpdateCoM(dt);
     if (_CentroDeMasa.x() > 3200 + 150)
     {_CentroDeMasa.rx() -= 3200 + 150;}
     if (_CentroDeMasa.x() < -150)

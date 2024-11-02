@@ -12,6 +12,8 @@ GameWidget::GameWidget(QWidget *parent)
     connect(&timer, &QTimer::timeout, this, QOverload<>::of(&GameWidget::update)); //hace que paintEvent sea llamado constantemente
     timer.start();
     setFocusPolicy(Qt::TabFocus); //permite que reciba inputs de teclado
+
+    this->elapsedTimer.start(); // Start the elapsed timer
 }
 
 void GameWidget::paintEvent(QPaintEvent *evento)
@@ -27,36 +29,35 @@ void GameWidget::paintEvent(QPaintEvent *evento)
         double y0 = this->height()/2-(float)this->width()*(3.0/4)/2;
         p.setViewport(0,y0,this->width(),(float)this->width()*(3.0/4));
     }
-
-    handleEvent();
-    juego->Update(); //antes de dibujar hay que actualizar el frame
+    qDebug()<<elapsedTimer.elapsed();
+    double dt = elapsedTimer.restart()/20.0;
+    handleEvent(dt);
+    juego->Update(dt); //antes de dibujar hay que actualizar el frame
     juego->Dibujar(&p);
 }
 
 
-void GameWidget::handleEvent(){
-    if (!eventos.empty()){
+void GameWidget::handleEvent(double dt){
 
+    if (!eventos.empty()){
         for(int i=0;i<eventos.size();i++){
             //juego->handleInput(eventos[i]);
             if (juego->get_nave() -> lives()){
                 switch (eventos[i]->key())  {
-                case Qt::Key_Right:
-                    juego->get_nave()->update_theta(5);
-                    break;
-                case Qt::Key_Left:
-                    juego->get_nave()->update_theta(-5);
-                    break;
-                case Qt::Key_Up:
-                    juego->get_nave()->Xlr8(4);
-                    break;
-                case Qt::Key_Space:
-                    juego -> Disparar();
-                    break;
+                    case Qt::Key_Right:
+                        juego->get_nave()->update_theta(5,dt);
+                        break;
+                    case Qt::Key_Left:
+                        juego->get_nave()->update_theta(-5,dt);
+                        break;
+                    case Qt::Key_Up:
+                        juego->get_nave()->Xlr8(0.8);
+                        break;
+                    case Qt::Key_Space:
+                        juego -> Disparar();
+                        break;
                 }
             }
-
-
         }
     }
 }
@@ -68,22 +69,18 @@ void GameWidget::addEvent(QKeyEvent *event){
                                   event->isAutoRepeat(), event->count());
 
 
-if (!eventos.empty()){
-        bool yaEsta = false;
-        for(int i=0; i<eventos.size() ;i++){
-            if(ev->key() == eventos[i]->key()){
-                yaEsta = true;
+    if (!eventos.empty()){
+            bool yaEsta = false;
+            for(int i=0; i<eventos.size() ;i++){
+                if(ev->key() == eventos[i]->key()){
+                    yaEsta = true;
+                }
             }
+            if(!yaEsta)
+                eventos.append(ev);
         }
-        if(!yaEsta)
+        else
             eventos.append(ev);
-    }
-    else{
-        eventos.append(ev);
-
-        }
-
-
 
 }
 

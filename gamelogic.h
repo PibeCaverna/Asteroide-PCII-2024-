@@ -18,7 +18,7 @@ class GameLogic:Drawable
 public:
     GameLogic();
     void Dibujar(QPainter * p) override;
-    void Update() override;
+    void Update(double dt) override;
     void Disparar();
     void Collision_Handler();
     void Spawn_Roid(qreal Q);

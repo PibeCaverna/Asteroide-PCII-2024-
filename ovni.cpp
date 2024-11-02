@@ -21,9 +21,20 @@ void Ovni::Dibujar(QPainter * p){
     p->drawLine(QLineF(_PoligonoRelativo[2],_PoligonoRelativo[5]));
 }
 
-void Ovni::Update(){
+void Ovni::Update(double dt){
     if (this ->_isshooting){_isshooting = false;}
-    this ->_CentroDeMasa += _Speed;
+    this ->_CentroDeMasa += _Speed*dt;
+
+    if (_CentroDeMasa.x() > 3200 + 150)
+    {_CentroDeMasa.rx() -= 3200 + 150;}
+    if (_CentroDeMasa.x() < -150)
+    {_CentroDeMasa.rx() += 3200 + 150;}
+    if (_CentroDeMasa.y() > 2400 + 150)
+    {_CentroDeMasa.ry() -= 2400 + 150;}
+    if (_CentroDeMasa.y() < -150)
+    {_CentroDeMasa.ry() += 2400 + 150;}
+
+
     if (_tsinceshot > 5000/_Puntos){
         _isshooting = true;
         _tsinceshot = 0;

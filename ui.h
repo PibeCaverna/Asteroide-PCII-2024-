@@ -8,7 +8,7 @@ public:
     UI();
     void MasPuntos(int Puntos){this -> _Puntos += Puntos;}
     void Dibujar(QPainter *p) override;
-    void Update() override;
+    void Update(double dt) override;
     void auch();
     void oneup(){this -> _vidas += 1;}
     int Health(){return _vidas;}

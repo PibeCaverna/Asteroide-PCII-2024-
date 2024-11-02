@@ -9,7 +9,7 @@ class Ovni: public Drawable, public PolyColider
 public:
     Ovni(QPointF CdMasa, qreal Puntos);
     void Dibujar(QPainter * p) override;
-    void Update() override;
+    void Update(double dt) override;
     QPolygonF get_poly(){
         return QPolygonF(_PoligonoRelativo);
     }
@@ -17,6 +17,7 @@ public:
     bool shooting(){
         return this -> _isshooting;
     }
+    int get_puntos(){return _Puntos;}
 
 protected :
     QList<QPointF> _PoligonoAbsoluto = {

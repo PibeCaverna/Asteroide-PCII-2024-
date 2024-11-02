@@ -15,7 +15,7 @@ class Bala: public Drawable, public PtColider
 
 public:
     Bala(QPointF pos, qreal angulo);
-    void Update() override;
+    void Update(double dt) override;
     void Dibujar(QPainter *p) override;
     bool expiro();
     int get_dt(){return _dt.elapsed();}

@@ -36,7 +36,7 @@ void UI::auch(){
     else{this -> _vidas = 0;}
 }
 
-void UI::Update(){
+void UI::Update(double dt){
     if (_Puntos > _n*10000){
         _vidas += 1;
         _n += 1;

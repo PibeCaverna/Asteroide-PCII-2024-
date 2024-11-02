@@ -11,7 +11,7 @@ public:
 
     Drawable();
     virtual void Dibujar(QPainter * p) = 0; //copiado del ejemplo de la pelotita, nidea de que significa
-    virtual void Update() = 0;//p es el nuvo centro
+    virtual void Update(double dt) = 0;//p es el nuvo centro
 
 };
 

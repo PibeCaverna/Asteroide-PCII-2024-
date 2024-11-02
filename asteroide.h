@@ -25,7 +25,7 @@ protected:
 public:
     Asteroide(QPointF CdMasa, qreal Puntos,QPointF vel=QPointF(0,0));
     void Dibujar(QPainter * p) override;
-    void Update();
+    void Update(double dt);
     QPolygonF get_poly(){
         return QPolygonF(_PoligonoRelativo);
     }
@@ -36,4 +36,3 @@ public:
 };
 
 #endif // ASTEROIDE_H
-

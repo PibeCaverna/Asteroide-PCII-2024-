@@ -4,10 +4,9 @@
 #include <QWidget>
 #include <QTimer>
 #include <QKeyEvent>
-#include <QKeySequence>
-#include <QKeyCombination>
 #include <QList>
 #include <QDebug>
+#include <QElapsedTimer>
 
 #include "gamelogic.h"
 
@@ -18,15 +17,17 @@ public:
     explicit GameWidget(QWidget *parent = nullptr);
 
     void paintEvent(QPaintEvent *evento) override;
-    void handleEvent();
+    void handleEvent(double dt);
     void addEvent(QKeyEvent *event);
     void removeEvent(QKeyEvent *event);
 
 protected:
     GameLogic * juego;
-    float refresh_period = 20;
+    float refresh_period = 5;
     QTimer timer;
     QList<QKeyEvent*> eventos;
+    QElapsedTimer elapsedTimer;
+
 
 };
 

@@ -9,10 +9,10 @@ public:
     PJ(QPointF CentroDeMasa);
     void Dibujar(QPainter * p) override;
     void Rototrasladar();
-    void update_theta(qreal Angulo);
+    void update_theta(qreal Angulo, double dt);
     void Xlr8(qreal polenta);
-    void UpdateCoM();
-    void Update() override;
+    void UpdateCoM(double dt);
+    void Update(double dt) override;
     QPointF get_punta(){return _PoligonoRelativo[0];}
     qreal get_angulo(){return _theta;}
     QPolygonF get_poly(){

@@ -17,8 +17,8 @@ void Bala::Dibujar(QPainter *p){
     //
 }
 
-void Bala::Update(){
-    _pos += _speed*50;
+void Bala::Update(double dt){
+    _pos += _speed*50*dt;
 
     if (_pos.x() > 3200)
         _pos.rx() = 0;

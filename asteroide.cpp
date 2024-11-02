@@ -19,13 +19,13 @@ void Asteroide::Dibujar(QPainter *p){
     p->drawPolygon(QPolygonF(_PoligonoRelativo));
 }
 
-void Asteroide::Update(){
+void Asteroide::Update(double dt){
     qreal mod = sqrt(pow(_velocidad.x(),2)+pow(_velocidad.y(),2));
     if (mod > 1){
         this -> _velocidad /= mod;
         this -> _velocidad *= _Valor/5;
     }
-    this->_CentroDeMasa += _velocidad;
+    this->_CentroDeMasa += _velocidad*dt;
     if (_CentroDeMasa.x() > 3200 + _PoligonoAbsoluto[7].x())
         {_CentroDeMasa.rx() -= 3200 + _PoligonoAbsoluto[7].x();}
     if (_CentroDeMasa.x() < _PoligonoAbsoluto[3].x())
