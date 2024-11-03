@@ -21,6 +21,9 @@ public:
     void kill(){this -> _isalive = false;}
     bool lives(){return _isalive;}
     void ressurect();
+    QPointF GetCOM(){
+        return _CentroDeMasa;}
+
 
 protected:
     QList<QPointF> _PoligonoAbsoluto = {
