@@ -1,11 +1,13 @@
 #include "gamelogic.h"
 
+int get_random_number(int a, int b, int c, int d);
+
 GameLogic::GameLogic() {
     this ->_Puntos = 0;
     this ->_Roidmount = 3;
     this ->RoundTimeout = 100;
     this -> _nave = new PJ(QPointF(1600,1200));
-    this ->Ovnis.append(new Ovni(QPointF(200,200),200));
+    this->timer.start();
 }
 void GameLogic::Dibujar(QPainter * p){
     p->fillRect(0,0,3200,2400,Qt::black);
@@ -112,6 +114,29 @@ void GameLogic::Spawn_Roid(qreal Q){
 
 }
 
+void GameLogic::Spawn_Ovni(){
+    qDebug()<<"ovni";
+    QPointF c = QPointF(get_random_number(-150,0,3200,3350),
+                        get_random_number(-150,0,2400,2550));
+
+    //int rangeSelector = QRandomGenerator::global()->bounded(2);  // 0 o 1
+    int puntos = 0;
+    switch(QRandomGenerator::global()->bounded(3)){
+    case 0:
+        puntos = 200;
+        break;
+    case 1:
+        puntos = 400;
+        break;
+    case 2:
+        puntos =500;
+        break;
+    }
+    Ovni* O = new Ovni(c,puntos);
+    Ovnis.append(O);
+
+}
+
 void GameLogic::Update(double dt){
 
     if (Asteroides.isEmpty()){
@@ -155,6 +180,9 @@ void GameLogic::Update(double dt){
             }
         }
     }
+    qDebug() << timer.elapsed()%15000;
+    if (timer.elapsed()%15000 < 5 && timer.elapsed() >1000 ) //crea un ovni cada x seg
+        Spawn_Ovni();
 }
 void GameLogic::Disparar(){
     if (Balas.empty() || (Balas.last()->get_dt() >150)){
@@ -162,3 +190,17 @@ void GameLogic::Disparar(){
         Balas.append(b);
     }
 }
+
+int get_random_number(int a, int b, int c, int d){
+    int rangeSelector = QRandomGenerator::global()->bounded(2);  // 0 o 1
+
+    if (rangeSelector == 0) {
+        // Generar número entre -150 y 0
+        return QRandomGenerator::global()->bounded(a, b); // El límite superior es exclusivo, así que usamos 1 para incluir 0.
+    } else {
+        // Generar número entre 3200 y 3350
+        return QRandomGenerator::global()->bounded(c, d); // El límite superior es exclusivo, así que usamos 3351 para incluir 3350.
+    }
+}
+
+
