@@ -29,7 +29,6 @@ void GameWidget::paintEvent(QPaintEvent *evento)
         double y0 = this->height()/2-(float)this->width()*(3.0/4)/2;
         p.setViewport(0,y0,this->width(),(float)this->width()*(3.0/4));
     }
-    qDebug()<<elapsedTimer.elapsed();
     double dt = elapsedTimer.restart()/20.0;
     handleEvent(dt);
     juego->Update(dt); //antes de dibujar hay que actualizar el frame

@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QRandomGenerator>
 #include <QDateTime>
+#include <QElapsedTimer>
 class GameLogic:Drawable
 {
 public:
@@ -22,6 +23,7 @@ public:
     void Disparar();
     void Collision_Handler();
     void Spawn_Roid(qreal Q);
+    void Spawn_Ovni();
     PJ * get_nave(){return this -> _nave;}
 private:
     int _ancho;
@@ -36,6 +38,7 @@ private:
     UI *_Interfaz = new UI();
     int PlayerTimeout = 0;
     int RoundTimeout = 0;
+    QElapsedTimer timer;
 };
 
 #endif // GAMELOGIC_H
