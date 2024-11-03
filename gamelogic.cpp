@@ -100,11 +100,14 @@ void GameLogic::Spawn_Roid(qreal Q){
     X.seed(QDateTime::currentMSecsSinceEpoch()%100);
     Y.seed(QDateTime::currentMSecsSinceEpoch()%100+1);
     V.seed(QDateTime::currentMSecsSinceEpoch()%100+2);
-    for (int i = 0; i < Q; i++){
+    for (int i = 0; i < Q;){
         r = QPointF(X.bounded(3200),Y.bounded(2400));
         v = QPointF(V.generateDouble()*5*((r.x()-1600)/abs(r.x()-1600))
                     ,V.generateDouble()*5*((r.y()-1600)/abs(r.y()-1600)));
-        this -> Asteroides.append(new Asteroide(r,20,v));
+        if ((abs(r.x())-abs(this ->_nave->GetCOM().x())>350)||(abs(r.y())-abs(this ->_nave->GetCOM().y())>350)){
+            this -> Asteroides.append(new Asteroide(r,20,v));
+            i++;
+        }
     }
 
 }
