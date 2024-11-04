@@ -14,12 +14,11 @@ void Bala::Dibujar(QPainter *p){
 
 
     p->drawPoint(_pos);
-    //
 }
 
 void Bala::Update(double dt){
     _pos += _speed*50*dt;
-
+    //logica toroideal
     if (_pos.x() > 3200)
         _pos.rx() = 0;
     else if (_pos.x() < 0)
@@ -31,6 +30,7 @@ void Bala::Update(double dt){
 }
 
 bool Bala::expiro(){
+    //si el tiempo de vida de la bala supera un limite expiro devuelve true
     if (_dt.elapsed() >= 700)
         return true;
     return false;

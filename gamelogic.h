@@ -38,7 +38,7 @@ private:
     UI *_Interfaz = new UI();
     int PlayerTimeout = 0;
     int RoundTimeout = 0;
-    QElapsedTimer timer;
+    QElapsedTimer timer;//se usa para generar los ovnis
 };
 
 #endif // GAMELOGIC_H
