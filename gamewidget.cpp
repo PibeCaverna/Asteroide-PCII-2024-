@@ -47,7 +47,7 @@ void GameWidget::handleEvent(double dt){
                     juego->get_nave()->update_theta(-5,dt);
                     break;
                 case Qt::Key_Up:
-                    juego->get_nave()->Xlr8(0.8);
+                    juego->get_nave()->Xlr8(0.8,dt);
                     break;
                 case Qt::Key_Space:
                     juego -> Disparar();

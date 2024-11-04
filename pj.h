@@ -10,7 +10,7 @@ public:
     void Dibujar(QPainter * p) override;
     void Rototrasladar();
     void update_theta(qreal Angulo, double dt);
-    void Xlr8(qreal polenta);
+    void Xlr8(qreal polenta,double dt);
     void UpdateCoM(double dt);
     void Update(double dt) override;
     QPointF get_punta(){return _PoligonoRelativo[0];}

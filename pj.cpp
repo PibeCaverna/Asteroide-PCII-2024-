@@ -16,7 +16,7 @@ void PJ::Dibujar(QPainter *p){
 
     p->drawPolygon(QPolygonF(_PoligonoRelativo));
 }
-void PJ::Rototrasladar(){
+void PJ::Rototrasladar(){// se multiplica todos los puntos por una matriz de rotacion
     for (int i =0; i<5;i++){
         qreal a = _PoligonoAbsoluto[i].x();
         qreal b = _PoligonoAbsoluto[i].y();
@@ -28,19 +28,18 @@ void PJ::Rototrasladar(){
     }
 
 }
-void PJ::update_theta(qreal Angulo, double dt){
+void PJ::update_theta(qreal Angulo, double dt){//moifica el angulo sin que este pase de 360 grados
     qreal newdeg = (_theta*180/M_PI) + Angulo*dt;
     if (newdeg > 360){newdeg -= 360 * (int)newdeg % 360;}
     this ->_theta = newdeg*M_PI/180;
 }
-void PJ::Xlr8(qreal polenta){
-    this -> _Speed += QPointF(polenta*cos(_theta-M_PI/2),polenta*sin(_theta-M_PI/2));
+void PJ::Xlr8(qreal polenta, double dt){
+    this -> _Speed += QPointF(polenta*cos(_theta-M_PI/2),polenta*sin(_theta-M_PI/2))*dt;
     qreal mod = sqrt(pow(_Speed.x(),2)+pow(_Speed.y(),2));
     if (mod > 20){
         this -> _Speed /= mod;
         this -> _Speed *= 20;
     }
-    //qDebug() << _Speed;
 }
 void PJ::UpdateCoM(double dt){
     this -> _CentroDeMasa += _Speed*dt;
