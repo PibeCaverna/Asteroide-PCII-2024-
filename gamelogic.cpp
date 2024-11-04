@@ -21,7 +21,7 @@ void GameLogic::Collision_Handler(){
     QList<qreal> Deadstones, DeadBullets,  DeadUFOS;
 
     //tiene que haber una manera de no hacer esta porqueria pero no tengo ganas
-    if (!Balas.empty()){ //chequeo si alguna bala coliciona con algo
+    if (!Balas.empty()){ //chequea si alguna bala coliciona con algo
         for (int i = 0; i < Balas.length(); i++){
             if(!Asteroides.empty()){
                 for (int j = 0; j < Asteroides.length(); j++){
@@ -53,7 +53,7 @@ void GameLogic::Collision_Handler(){
             }
         }
     }
-    if(!Asteroides.empty()){//chequeo si algun asteriode coliciona con algo, menos bala que ya se chequeo
+    if(!Asteroides.empty()){//chequea si algun asteriode coliciona con algo, menos bala que ya se chequeo
         for (int j = 0; j < Asteroides.length(); j++){
             if ((Asteroides[j]->Golpe_Poly(this->_nave)) && (this -> _nave -> lives()) ){
                 this -> _Interfaz->auch();
@@ -68,7 +68,7 @@ void GameLogic::Collision_Handler(){
             }
         }
     }
-    if(!Ovnis.empty()){ //chequeo si algun ovni choca con la nave
+    if(!Ovnis.empty()){ //chequea si algun ovni choca con la nave
         for (int k = 0; k < Ovnis.length(); k++){
             if ( Ovnis[k]->Golpe_Poly(this->_nave) && (this -> _nave -> lives())){
                 this -> _Interfaz->auch();
@@ -76,7 +76,7 @@ void GameLogic::Collision_Handler(){
             }
         }
     }
-
+    //se eliminan todos los objetos que colicionaron
     for (qreal i: DeadBullets){
         delete Balas[i];
         Balas[i] = nullptr;
@@ -96,11 +96,13 @@ void GameLogic::Collision_Handler(){
 }
 
 void GameLogic::Spawn_Roid(qreal Q){
+    //setea los generadores de numeros aleatorios
     QPointF r, v;
     QRandomGenerator X,Y,V;
     X.seed(QDateTime::currentMSecsSinceEpoch()%100);
     Y.seed(QDateTime::currentMSecsSinceEpoch()%100+1);
     V.seed(QDateTime::currentMSecsSinceEpoch()%100+2);
+    //genera el punto de origen y la velocidad de cada asteroide
     for (int i = 0; i < Q;){
         r = QPointF(X.bounded(3200),Y.bounded(2400));
         v = QPointF(V.generateDouble()*5*((r.x()-1600)/abs(r.x()-1600))
@@ -110,13 +112,14 @@ void GameLogic::Spawn_Roid(qreal Q){
             i++;
         }
     }
-
 }
 
 void GameLogic::Spawn_Ovni(){
+    //genera el punto de aparacion
     QPointF c = QPointF(get_random_number(-150,0,3200,3350),
                         get_random_number(-150,0,2400,2550));
 
+    //genera el tamaño del ovni
     int puntos = 0;
     switch(QRandomGenerator::global()->bounded(2)){
     case 0:
@@ -128,7 +131,6 @@ void GameLogic::Spawn_Ovni(){
     }
     Ovni* O = new Ovni(c,puntos);
     Ovnis.append(O);
-
 }
 
 void GameLogic::Update(double dt){
@@ -186,13 +188,14 @@ void GameLogic::Disparar(){
 }
 
 int get_random_number(int a, int b, int c, int d){
+    //genera un numero entre dos espacios acotados
     int rangeSelector = QRandomGenerator::global()->bounded(2);  // 0 o 1
 
     if (rangeSelector == 0) {
-        // Generar número entre -150 y 0
+        // Generar número entre a y b
         return QRandomGenerator::global()->bounded(a, b); // El límite superior es exclusivo, así que usamos 1 para incluir 0.
     } else {
-        // Generar número entre 3200 y 3350
+        // Generar número entre c y d
         return QRandomGenerator::global()->bounded(c, d); // El límite superior es exclusivo, así que usamos 3351 para incluir 3350.
     }
 }

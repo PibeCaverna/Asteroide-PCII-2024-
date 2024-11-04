@@ -16,7 +16,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *ev){
     ui->widget->addEvent(ev);
-    //qDebug() << ev;
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *ev){

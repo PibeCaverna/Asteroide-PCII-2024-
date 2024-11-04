@@ -22,9 +22,9 @@ void Ovni::Dibujar(QPainter * p){
 }
 
 void Ovni::Update(double dt){
-    if (this ->_isshooting){_isshooting = false;}
+    if (this ->_isshooting){_isshooting = true;}
     this ->_CentroDeMasa += _Speed*dt;
-
+    //logica toroideal
     if (_CentroDeMasa.x() > 3200 + 150)
     {_CentroDeMasa.rx() -= 3200 + 150;}
     if (_CentroDeMasa.x() < -150)
