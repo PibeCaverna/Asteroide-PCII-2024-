@@ -10,7 +10,6 @@
 #include <QPointF>
 #include <QWidget>
 #include <QKeyEvent>
-#include <QDebug>
 #include <QRandomGenerator>
 #include <QDateTime>
 #include <QElapsedTimer>

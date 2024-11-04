@@ -63,7 +63,6 @@ void GameLogic::Collision_Handler(){
                 for (int k = 0; k < Ovnis.length(); k++){
                     if ( Asteroides[j]->Golpe_Poly(this->Ovnis[k]) ){
                         if (!DeadUFOS.contains(k)){DeadUFOS.prepend(k);}
-                        qDebug() << "chocan y chocan";
                     }
                 }
             }
@@ -122,15 +121,12 @@ void GameLogic::Spawn_Ovni(){
 
     //genera el tamaño del ovni
     int puntos = 0;
-    switch(QRandomGenerator::global()->bounded(3)){
+    switch(QRandomGenerator::global()->bounded(2)){
     case 0:
-        puntos = 100;
+        puntos = 200;
         break;
     case 1:
-        puntos = 300;
-        break;
-    case 2:
-        puntos =400;
+        puntos = 1000;
         break;
     }
     Ovni* O = new Ovni(c,puntos);
